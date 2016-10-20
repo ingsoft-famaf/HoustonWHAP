@@ -6,7 +6,11 @@ from .models import *
 
 # Create your views here.
 def home(request):
-    return HTTPr('Hola!')
+    viewitems = {
+        'title': 'Home',
+        'username': 'Facu'
+    }
+    return render(request, 'gst/index.html', viewitems)
 
 class LoginView(View):
     @csrf_exempt
