@@ -13,7 +13,8 @@ class User(models.Model):
         return self.name
 
 class SubTask(models.Model):
-	name = models.CharField(max_leng=50)
+	name = models.CharField(max_length=50)
+	task = models.ForeignKey(Task)
 	deadline = models.DateTimeField()
 	complete = models.BooleanField
 
