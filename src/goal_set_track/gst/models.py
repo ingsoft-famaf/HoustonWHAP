@@ -11,3 +11,13 @@ class User(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Task(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=254)
+    expiration_date = models.DateTimeField()
+    category = models.ForeignKey(Category)
+    
+    def __str__(self):
+        return self.title
