@@ -19,3 +19,10 @@ class SubTask(models.Model):
 
 	def __str__(self):
 		return self.name
+
+class Category(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+	name = models.CharField(max_leng=50, primary_key=True)
+
+	def __str__(self):
+		return self.name
