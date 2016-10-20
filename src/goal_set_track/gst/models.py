@@ -11,3 +11,11 @@ class User(models.Model):
 
     def __str__(self):
         return self.name
+
+class SubTask(models.Model):
+	name = models.CharField(max_leng=50)
+	deadline = models.DateTimeField()
+	complete = models.BooleanField
+
+	def __str__(self):
+		return self.name
