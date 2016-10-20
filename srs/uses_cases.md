@@ -2,114 +2,106 @@
 
 List of all uses cases.
 
-1)  Register.
-2)  Login.
-3)  Logout.
-4)  Edit profile.
-5)  Validate user email.
-6)  Create new task.
-7)  Modify user task.
-8)  Delete user task.
-9)  Archive user task.
-10) Create new category.
-11) Modify category.
-12) Delete category.
-13) Create new user sub task.
-14) Modify user sub task.
-15) Delete user sub task.
-16) View user task.
-17) View user sub task.
-18) View category.
-19) View profile.
+1.  Register.
+2.  Login.
+3.  Logout.
+4.  Edit profile.
+5.  Validate user email.
+6.  Create new task.
+7.  Modify user task.h
+8.  Delete user task.
+9.  Archive user task.
+10. Create new category.
+11. Modify category.
+12. Delete category.
+13. Create new user sub task.
+14. Modify user sub task.
+15. Delete user sub task.
+16. View user task.
+17. View user sub task.
+18. View category.
+19. View profile.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 1: Register.
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 1: **Register.***
+    * **Primary actor**: User.
+    * **Precondition**: User has Internet connection and a browser installed and the Web Server is running.
+    * **Successful scenario**: 
+        1. User enters to the app's url and gets the login/register interface 
+        2. User clicks on "register" button and then types username, email and password in the correct boxes. 
+    * **Exceptional scenario**:
+        3. User types wrong the email format and he needs to type again.
+   
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 2: Login.
-    * Principal actor: User.
-    * Precondition: El servidor funciona correctamente.
-    * Sussefun scenario:
-        1. The user select the option "Login".
-        2. The system muestra la pantalla de login, con los parámetros: Nombre y password.
-        3. El sistema confirma el logeo exitoso y lo redirecciona a su lista de metas.
-    * Exceptional scenario:
-        3. i. El seudonimo o contraseña son invalidos.
-            * El sistema notifica error y que vuelva a intentar.
+* *Use case # 2: **Login.***
+    * **Primary actor**: User.
+    * **Precondition**: User has Internet connection, a browser installed  and an account in the system and the Web Server is running.
+    * **Successful scenario**:
+        1. The user enters to the app's url in the browser and gets the login/register interface.
+        2. The user clicks on "login" button and types email and password in the correct boxes.
+        3. The system shows an successful login in the screen and redirect the user to the main page where the personal goals are shown.
+    * **Exceptional scenario**:
+        1. The password or email is incorrect and user has to type it again.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 3: Logout.
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 3: **Logout.***
+    * **Primary actor**: User.
+    * **Precondition**: User has Internet connection, a browser installed, an account in the system and is already logged in, and the Web Server is running.
+    * **Successful scenario**:
+        1. User clicks on the "logout" button in the upper right edge of the screen.
+        2. System logs out the user redirects him to the login/register menu.
+
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 4: Edit profile.
-    * Principal actor: User.
-    * Precondition: TODO.
-    * Successful scenario:
-        1. The user select "Edit profile".
-        2. El sistema muestra el perfil del usuario con la posibilidad de hacer cambios en los parámetros que desea.
-        3. El usuario hace los cambios que desea.
-        4. El sistema confirma la operacion.
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 4: **Edit profile***.
+    * **Primary actor**: User.
+    * **Precondition**: User has Internet connection, a browser installed, an account in the system and is already logged in, and the Web Server is running.
+    * **Successful scenario**:
+        1. User clicks on "Edit profile" button.
+        2. A new interface, where user can edit his data, It's shown to him on the screen.
+        3. User changes the settings or information as he wishes and confirms the changes.
+        4. A successful message is shown to the user on the screen.
+    * **Exceptional scenario**:
+        3. Changes can't be applied and the user has to try again.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 5: Validate user email.
-    * Principal actor: TODO.
-    * Precondition: The user is login, y el servidor funciona correctamente.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 5: **Validate user email***.
+    * **Primary actor**: System.
+    * ** Precondition**: The user is logged in, and the server is running.
+    * **Successful scenario**:
+        1. User tries to login to the system 
+        2. System checks if the password and email are correct in the data base
+        3. If it's all OK, the login process will proceed successfully
+    * **Exceptional scenario**:
+        3. email or password don't match with any in the data base and will return an wrong validation message.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 6: Create new task.
-    * Principal actor: User.
-    * Precondition: The user is loggin on the system.
-    * Successful scenario:
-        1. The user choose the option "create new task".
-        2. The system sign a form to complete with nexts elements: Title, Descriptión, date and time to finish, sub-task.
-        3. The user complete the form.
-        4. The system confirms the operation.
-    * Exceptional scenario:
-        3. i. The user leaves without completing parameters.
-            * The system reports all parameters must be completed and redisplay the form as it had completed the user.
-            * The user complete all parameters.
-            * The system confirms the operation.
+* *Use case # 6: **Create new task***.
+    * **Primary actor**: User.
+    * **Precondition**: User has Internet connection, a browser installed, an account in the system and is already logged in, and the Web Server is running.
+    * **Successful scenario**:
+        1. The user clicks on "create new task" option.
+        2. A interface will be shown by the System to the user where he can complete the fields which describes the task: Title, Description, expiration date.
+        3. The user full fills the form and submits the new task.
+        4. The system confirms the operation and shows a success message.
+    * **Exceptional scenario**:
+        3. The user submit the task without completing all parameters. The system reports all parameters must be completed and displays uncompleted form for further full filling by the user.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 7: Modify user task.
-    * Principal actor: User.
-    * Precondition: The user is loggin on the system. Has created at least one goal.
-    * Successful scenario:
-       
+* *Use case # 7: **Modify user task.***
+    * **Primary actor**: User.
+    * **Precondition**: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
+    * **Successful scenario**:     
 
-        1. El usuario selecciona de sus lista de metas la que desea modificar.
+        1. User selects a task by searching it or through the task list.
         2. El sistema muestra la meta con sus caracteristicas, y algunas opciones, entre ellas la opción "Modificar".
         3. El usuario selecciona la opción Modificar.
         4. El sistema muestra un formulario con las caracteristicas que puede modificar de la meta, entre ellas: submetas, tiempo de plazo, etc.
