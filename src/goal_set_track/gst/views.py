@@ -1,29 +1,26 @@
 from django.shortcuts import render
 from django.views.generic import View
 from django.http import HttpResponse as HTTPr
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
+from .models import *
 
 # Create your views here.
 def home(request):
     return HTTPr('Hola!')
 
-'''
-def login(request):
-    # print request.method
-    # TODO Render login template.
-    # viewitems = {}
-    # viewitems.title = 'GST Login'
-    # return render(request, 'gst/login.html', viewitems)
-    return HTTPr('Estas en el login.')
-'''
-
 class LoginView(View):
-    @csrf_protect
+    @csrf_exempt
     def get(self, request):
         viewitems = {
         }
         return render(request, 'login.html', viewitems)
 
+    @csrf_exempt
     def post(self, request):
-        print request.POST
-
+        e = request.POST['email']
+        p = request.POST['password']
+        try:
+            usuario = User.objects.get(email=e, password=p)
+            return HTTPr('Bienvenido ' + usuario.name)
+        except User.DoesNotExist:
+            return HTTPr('El usuario o contrasena son incorrectos.')

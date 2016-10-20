@@ -19,6 +19,7 @@ from gst import views
 
 urlpatterns = [
     url('home/', views.home, name='home'),
+    url('login', views.LoginView.as_view(), name='login'),
     url('user/login/', views.LoginView.as_view(), name='login'),
     url(r'^admin/', admin.site.urls)
 ]
