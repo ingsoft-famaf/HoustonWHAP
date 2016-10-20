@@ -21,5 +21,7 @@ urlpatterns = [
     url('home/', views.home, name='home'),
     url('login', views.LoginView.as_view(), name='login'),
     url('user/login/', views.LoginView.as_view(), name='login'),
+    url('register', views.RegisterView.as_view(), name='register'),
+    url('user/register/', views.RegisterView.as_view(), name='register'),
     url(r'^admin/', admin.site.urls)
 ]
