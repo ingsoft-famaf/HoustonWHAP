@@ -99,26 +99,24 @@ List of all uses cases.
 * *Use case # 7: **Modify user task.***
     * **Primary actor**: User.
     * **Precondition**: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
-    * **Successful scenario**:     
+    * **Successful scenario**:
 
         1. User selects a task by searching it or through the task list.
-        2. El sistema muestra la meta con sus caracteristicas, y algunas opciones, entre ellas la opción "Modificar".
-        3. El usuario selecciona la opción Modificar.
-        4. El sistema muestra un formulario con las caracteristicas que puede modificar de la meta, entre ellas: submetas, tiempo de plazo, etc.
-        5. El usuario hace las modificaciones pertinentes.
-        6. El sistema confirma que se modificó exitosamente.
+        2. A new interface is shown to the user where he can see the fields of a task (description, expiration date, etc) and several options where one of them is Modify.
+        3. User selects the option modify.
+        4. The interface changes where the fields of the task are modifiable.
+        5. User modifies the task as he desire, and submit the changes.
+        6. A successful message is shown to the user, and the system saves the changes.
 
-    * Exceptional scenario:
-        5. i. El usuario hace modificaciones de forma incorrecta en algún parametro.
-            * El sistema informa de dicho error y resalta los parametros que tiene que reveer el usuario.
-            * El usuario hace los recambios necesarios.
-            * El sistema revisa que está todo bien y confirma la operación.
+    * **Exceptional scenario**:
+        1. The user modifies a task's field with the wrong format, so the system will show a invalid format message.
+        2. The user has to modify again the field and continue the steps (from 5).
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 8: Delete user task.
-    * Principal actor: TODO.
-    * Precondition: TODO.
+* *Use case # 8: **Delete user task***.
+    * Primary actor: User.
+    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
     * Successful scenario: TODO.
         1. .
         2. .
@@ -130,7 +128,7 @@ List of all uses cases.
 
 * Use case # 9: Archive user task.
     * Principal actor: Usuario.
-    * Precondition: El usuario está loggueado en el sistema, y ya tiene al menos una meta creada.
+    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
     * Successful scenario:
         1. El usuario selecciona de sus lista de metas sin archivar la que desea archivar.
         2. El sistema muestra la meta con sus caracteristicas, y algunas opciones, entre ellas la opción "Archivar".
@@ -149,7 +147,7 @@ List of all uses cases.
 
 * Use case # 10: Create new category.
     * Principal actor: User.
-    * Precondition: The user is login.
+    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and the Web Server is running.
     * Successful scenario:
         1. The user select "Create new category".
         2. El sistema muestra el campo para que se escriba el nombre de la categoria.
@@ -165,7 +163,7 @@ List of all uses cases.
 * Use case # 11: Modify category.
     * Principal actor: TODO.
     * Precondition: TODO.
-    * Successful scenario: TODO.
+    * Successful scenario: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a category at least, and the Web Server is running.
         1. .
         2. .
     * Exceptional scenario:
@@ -176,7 +174,7 @@ List of all uses cases.
 
 * Use case # 12: Delete category.
     * Principal actor: TODO.
-    * Precondition: TODO.
+    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a category at least, and the Web Server is running.
     * Successful scenario: TODO.
         1. .
         2. .
@@ -188,7 +186,7 @@ List of all uses cases.
 
 * Use case # 13: Create new user sub task.
     * Principal actor: User.
-    * Precondition: The user is login on the system and select a task.
+    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
     * Successful scenario:
         1. The user select "Create sub task".
         2. The system sign a form to complete with nexts elements: Title, Descriptión, date and time to finish.
@@ -206,7 +204,7 @@ List of all uses cases.
 
 * Use case # 14: Modify user sub task.
     * Principal actor: TODO.
-    * Precondition: TODO.
+    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task and subtask at least, and the Web Server is running.
     * Successful scenario: TODO.
         1. .
         2. .
@@ -216,9 +214,9 @@ List of all uses cases.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 15: Delete user sub task.
+* Use case # 15: Delete sub task.
     * Principal actor: TODO.
-    * Precondition: TODO.
+    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task and subtask at least, and the Web Server is running..
     * Successful scenario: TODO.
         1. .
         2. .
@@ -230,7 +228,7 @@ List of all uses cases.
 
 * Use case # 16: View user task.
     * Principal actor: TODO.
-    * Precondition: TODO.
+    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
     * Successful scenario: TODO.
         1. .
         2. .
@@ -242,7 +240,7 @@ List of all uses cases.
 
 * Use case # 17: View user sub task.
     * Principal actor: TODO.
-    * Precondition: TODO.
+    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task and subtask at least, and the Web Server is running.
     * Successful scenario: TODO.
         1. .
         2. .
@@ -254,7 +252,7 @@ List of all uses cases.
 
 * Use case # 18: View category.
     * Principal actor: TODO.
-    * Precondition: TODO.
+    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a category at least, and the Web Server is running.
     * Successful scenario: TODO.
         1. .
         2. .
@@ -266,7 +264,7 @@ List of all uses cases.
 
 * Use case # 19: View profile.
     * Principal actor: TODO.
-    * Precondition: TODO.
+    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and the Web Server is running.
     * Successful scenario: TODO.
         1. .
         2. .
