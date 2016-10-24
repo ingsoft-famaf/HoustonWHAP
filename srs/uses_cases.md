@@ -199,86 +199,83 @@ List of all uses cases.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 14: Modify user sub task.
-    * Principal actor: TODO.
-    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task and subtask at least, and the Web Server is running.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 14: **Modify user sub task.***
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task and subtask at least, and the Web Server is running. Also user has already in mind which subtask wants to modify.
+    * **Successful scenario:**
+        1. For searching the subtask, first the user has to search the task which contains the subtask. For that see `Search Task` use case.
+        2. Once being in the Task interface, user has to select the subtask that wants to modify.
+        3. Once selected, a new interface is shown to the user where he can full fill the subtask fields (expiration date, description, etc).
+        4. User changes the fields he wants to modify.
+        5. Submit changes, and the system will save the modifications
+        
+    * **Exceptional scenario:**
+        3. If the subtask fields were filled with a wrong format, the system will let the user know by a promted message.
+         
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 15: Delete sub task.
-    * Principal actor: TODO.
-    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task and subtask at least, and the Web Server is running..
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 15: **Delete sub task.***
+    * **Primary actor:** User.
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task and subtask at least, and the Web Server is running. Also user has already in mind which subtask wants to delete.
+    * **Successful scenario:**
+        1. For searching the subtask, first the user has to search the task which contains the subtask. For that see `Search Task` use case.
+        2. Once being in the Task interface, user has to select the subtask that wants to delete.
+        3. Once selected, A new button appears next to the subtask that said `delete`. User has to click on it.
+        4. A warning message will be shown to the user, which he has to confirm the deletion.
+        5. Once confirmed, System will delete the subtask from user information.
+    * **Exceptional scenario:**
+        3. If mistaken subtask was deleted, the user can't recovered
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 16: View user task.
-    * Principal actor: TODO.
-    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 16: **View user task.***
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
+    * **Successful scenario: **
+        1. In the main page it will appear all the user task where user can select it from there if not, on top of the page there is an option for search tasks.
+        2. User has to type the name of the task and after that he has to select the task he wants to view.
+        3. Once selected, a new interface it will be shown to the user where he can see the information of the task.
+    * **Exceptional scenario:**
+        3. If the user searches the task and no result appear is because the task does not exist or was deleted before.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 17: View user sub task.
-    * Principal actor: TODO.
-    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task and subtask at least, and the Web Server is running.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 17: **View user sub task.***
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task and subtask at least, and the Web Server is running.
+    * **Successful scenario:**
+        1. For viewing a subtask, user has to be on the task where the subtask is contained.
+        2. Once there, it will appear one or more subtask, user has to select the one he wants to view.
+        3. Once selected, a new interface it will be shown where the information of the subtask is.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 18: View category.
-    * Principal actor: TODO.
-    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a category at least, and the Web Server is running.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 18: **View category.***
+    * **Primary actor:** User
+    * **Precondition**: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a category at least, and the Web Server is running.
+    * **Successful scenario:**
+        1. One of the first options is displayed on the menu of the main page is `view categories`.
+        2. User has to click that option and a list of categories are displayed which its names.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 19: View profile.
-    * Principal actor: TODO.
-    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and the Web Server is running.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* Use case # 19: View profile.***
+    * **Primary actor:** User.
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and the Web Server is running.
+    * **Successful scenario:**
+        1. In the main page, user has to select the option `View Profile`
+        2. An interface will be shown with user's information and other options (Modify, View Stats, etc).
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 20: .
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
+* Use case # 20: View Stats
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and the Web Server is running.
+    * **Successful scenario:**
+        1. In the `View Profile` interface the user has to select the option `View Stats`.
+        2. Once selected, an interface will be shown to the user where the number of task where accomplished and other stats.
     * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
-
+        3. If the number of task accomplished is zero, is because the user has not accomplish a single task.
+        
 ![separador](http://www.bigband.es/img_cm/separador.png)
