@@ -260,7 +260,7 @@ List of all uses cases.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 19: View profile.***
+* *Use case # 19: **View profile.***
     * **Primary actor:** User.
     * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and the Web Server is running.
     * **Successful scenario:**
@@ -269,7 +269,7 @@ List of all uses cases.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 20: View Stats
+* *Use case # 20: **View Stats***
     * **Primary actor:** User
     * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and the Web Server is running.
     * **Successful scenario:**
@@ -279,3 +279,83 @@ List of all uses cases.
         3. If the number of task accomplished is zero, is because the user has not accomplish a single task.
         
 ![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 21: **Create Comment.***
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in, has a task already created and the Web Server is running.
+    * **Successful scenario:**
+        1. Once the user is viewing a task, below in the interface there is an option `Add Comment`. User has to click on it.
+        2. Once selected, an box will be shown to the user where he can type the message that the comment will contain
+        3. User submits the comment and the system will save the new comment
+    * **Exceptional scenario:**
+        3. If the comment is up to 300 characters, A message will be shown to the user which will warn him about the message character limit.
+        
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 22: **Upload Attached File***
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in, has a task already created and the Web Server is running.
+    * **Successful scenario:**
+        1. Once the user is viewing a task, below in the interface there is an option `Upload Attached file`. User has to click on it.
+        2. Once selected, an box will be shown to the user where he can select from his computer which file he wants to upload.
+        3. User selects the file and hits the upload button.
+        4. Once the upload is finished, The system saves it.
+    * **Exceptional scenario:**
+        3. If the file has an invalid format a message will be shown to the user which will warn him about the invalid format and has to select another file or cancel the operation.
+        
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 23: **Delete Comment.***
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in, has a task already created with at least a comment and the Web Server is running.
+    * **Successful scenario:**
+        1. Once the user is viewing a task, below in the interface there are the comments from the task. User has to select the one which wants to delete it.
+        2. Once selected, some options will be shown to the user (`modify` or `delete`)
+        3. User Clicks the `delete` button and a warning message will be shown to the user for confirmation.
+        4. Once the deletion is confirmed, the system proceeds to delete the comment.
+    * **Exceptional scenario:**
+        3. If the comment for deletion is not the user wanted to delete, it can't be recovered.
+        
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 24: **Delete Uploaded File***
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in, has a task already created with an attached file uploaded and the Web Server is running.
+    * **Successful scenario:**
+        1. Once the user is viewing a task, below in the interface there are the comments from the task and the uploaded files. User has to select the file which wants to delete it.
+        2. Once selected the option delete will appear.
+        3. User Clicks the `delete` button and a warning message will be shown to the user for confirmation.
+        4. Once the deletion is confirmed, the system proceeds to delete the file.
+    * **Exceptional scenario:**
+        3. If the file for deletion is not the user wanted to delete, it can't be recovered.
+        
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 25: **Modify Comment.***
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in, has a task already created with comments and the Web Server is running.
+    * **Successful scenario:**    * **Successful scenario:**
+        1. Once the user is viewing a task, below in the interface there are the comments from the task. User has select the one which wants to delete it.
+        2. Once selected, some options will be shown to the user (`modify` or `delete`)
+        3. User Click the `modify` button and a box will be shown to the user with the containing message of the comment, which is now modifiable.
+        4. The user may now modify the message and after that submit the changes
+        5. The system will save the changes after the submition
+        
+    * **Exceptional scenario:**
+        3. If the comment for modification is not the user wanted to modify, it can't be recovered to the last stage but it still be modifiable.
+        
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 26: **View Comments.***
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in, has a task already created with comments and the Web Server is running.
+    * **Successful scenario:**
+        1. Once the user is viewing a task, below in the interface there are the list of comments, and the user may view its content of each one.
+        
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 27: **View uploaded file.***
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in, has a task already created with an uploaded file at least and the Web Server is running.
+    * **Successful scenario:**
+        1. Once the user is viewing a task, below in the interface there are the list of comments, and the attached files. User may view the file by clicking on it.
