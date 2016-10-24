@@ -17,7 +17,7 @@ class LoginView(View):
     def get(self, request):
         viewitems = {
         }
-        return render(request, 'login.html', viewitems)
+        return render(request, 'gst/login.html', viewitems)
 
     @csrf_exempt
     def post(self, request):
@@ -34,7 +34,7 @@ class RegisterView(View):
     def get(self, request):
         viewitems = {
         }
-        return render(request, 'register.html', viewitems)
+        return render(request, 'gst/register.html', viewitems)
 
     @csrf_exempt
     def post(self, request):
@@ -46,3 +46,14 @@ class RegisterView(View):
         print p
         new_user = User.objects.create(name = n, password = p, email = e)
         return HTTPr('Bienvenido ' + new_user.name + '. Esperamos que disfrutes del servicio.')
+
+class CategoryNewView(View):
+    @csrf_exempt
+    def get(self, request):
+        viewitems = {
+        }
+        return render(request, 'gst/category.html', viewitems)
+
+    @csrf_exempt
+    def post(self, request):
+        return HTTPr('Estas aca ASD.')
