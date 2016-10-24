@@ -102,8 +102,8 @@ List of all uses cases.
     * **Successful scenario**:
 
         1. User selects a task by searching it or through the task list.
-        2. A new interface is shown to the user where he can see the fields of a task (description, expiration date, etc) and several options where one of them is Modify.
-        3. User selects the option modify.
+        2. A new interface is shown to the user where he can see the fields of a task (description, expiration date, etc) and several options where one of them is `Modify`.
+        3. User selects the option `Modify`.
         4. The interface changes where the fields of the task are modifiable.
         5. User modifies the task as he desire, and submit the changes.
         6. A successful message is shown to the user, and the system saves the changes.
@@ -115,90 +115,87 @@ List of all uses cases.
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
 * *Use case # 8: **Delete user task***.
-    * Primary actor: User.
-    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+    * **Primary actor:** User.
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
+    * **Successful scenario**:
+        1. User selects a task by searching it or through the task list.
+        2. A new interface is shown to the user where he can see the fields of a task (description, expiration date, etc) and several options where one of them is `Delete`.
+        3. User selects the option `Delete`.
+        4. A warning message will be shown for the user if he is sure on delete the selected task.
+        5. User has to confirm the warning.
+        6. The system saves the changes.
+    * **Exceptional scenario:**
+        3. If the user deletes a wrong task, it can't be recovered.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 9: Archive user task.
-    * Principal actor: Usuario.
-    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
-    * Successful scenario:
-        1. El usuario selecciona de sus lista de metas sin archivar la que desea archivar.
-        2. El sistema muestra la meta con sus caracteristicas, y algunas opciones, entre ellas la opción "Archivar".
-        3. El usuario selecciona la opción archivar.
-        4. El sistema muestra una lista con los nombres de las carpetas ya creadas, y al finalizar una opción "crear carpeta"
-        5. El usuario selecciona una de las carpetas ya previamente creadas.
-        6. El sistema confirma que se archivo exitosamente.
+* *Use case # 9:** Archive user task.***
+    * **Primary actor:** User.
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
+    * **Successful scenario:**
+        1. User selects a task by searching it or through the task list.
+        2. A new interface is shown to the user where he can see the fields of a task (description, expiration date, etc) and several options where one of them is `Archive`.
+        3. User selects the option `Archive`.
+        4. The system archive the task and redirects the user to homepage.
 
-    * Exceptional scenario:
-        6. i. El usuario selecciona la opción "crear carpeta".
-            * El sistema muestra una ventana indicando que ponga el nombre de la nueva carpeta.
-            * El usuario completa la opción con el nombre de la nueva carpeta.
-            * El sistema revisa que no exista ya una carpeta con dicho nombre. Sino existe la crea y archiva la meta ahi, si sí existe indica: "Ya existe una carpeta con dicho nombre", archiva la meta en ésa carpeta y vuelve al menú inicial.
+    * **Exceptional scenario:**
+        6. If the user archives the wrong task, it can be restored.
+        
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 10: **Create new category.***
+    * **Primary actor:** User.
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and the Web Server is running.
+    * **Successful scenario:**
+        1. The user selects `Create new category` from the main page.
+        2. A new interface is shown to the user where he can create a new category inserting its name.
+        3. User full fills the category name and submits it. **Exceptional scenario:**
+        3. User types wrong the category name and submit it. It can be modify.
+        4. User fills the Category name with an invalid format. A invalid format message it will be shown to the user and he has to proceed the remaining steps again (from 3).
+        3.  If the category name is already used, a message it will be shown and the user can search it in the `search Category` button in the main page.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 10: Create new category.
-    * Principal actor: User.
-    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and the Web Server is running.
-    * Successful scenario:
-        1. The user select "Create new category".
-        2. El sistema muestra el campo para que se escriba el nombre de la categoria.
-        3. El usuario rellena el campo y hace clic en “Crear”.
-    * Exceptional scenario:
-        3. i. El usuario rellena con caracteres o formatos invalidos los datos de la meta.
-            * El sistema notifica que esta mal y pide que se reintente.
-          ii. The category alredy exist.
-            * El sistema notifica que ​ ya existe la categoria.
+* **Use case # 11: Modify category.**
+    * **Primary actor:** User
+    * **Precondition**: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a category at least, and the Web Server is running.
+    * **Successful scenario:**
+        1. The user searches the category through `Search category` from the main page.
+        2. A new interface is shown to the user where all the categories are on a list. The user selects the category for modify it.
+        3. The name of the category is modifiable and the user types the new category's name and press `Enter`.
+        3. The system will save the changes.
+    * **Exceptional scenario:**
+        3. If the user selects a wrong category it can be deselected.
+        
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 12: **Delete category.***
+    * **Primary actor:** User.
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a category at least, and the Web Server is running.
+    * **Successful scenario:**
+        1. The user searches the category through `Search category` from the main page.
+        2. A new interface is shown to the user where all the categories are on a list. The user selects the category for deletion.
+        3. A warning message is shown to the user which he has to confirm the deletion.
+        3. If the message is confirmed the system will delete the category selected.
+    * **Exceptional scenario:**
+        3. If the user deletes a wrong category it can't be recovered.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 11: Modify category.
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a category at least, and the Web Server is running.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
-
-![separador](http://www.bigband.es/img_cm/separador.png)
-
-* Use case # 12: Delete category.
-    * Principal actor: TODO.
-    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a category at least, and the Web Server is running.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
-
-![separador](http://www.bigband.es/img_cm/separador.png)
-
-* Use case # 13: Create new user sub task.
-    * Principal actor: User.
-    * Precondition: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
-    * Successful scenario:
-        1. The user select "Create sub task".
-        2. The system sign a form to complete with nexts elements: Title, Descriptión, date and time to finish.
-        3. The user complete the form.
-        4. The system confirms the operation.
-    * Exceptional scenario:
-        3. i. The user leaves without completing parameters.
-            * The system reports all parameters must be completed and redisplay the form as it had completed the user.
-            * The user complete all parameters.
+* *Use case # 13: **Create new user sub task***.
+    * **Primary actor:** User.
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
+    * **Successful scenario:**
+        1. The user selects a task from the list task or through searching it.
+        2. Once he selected one, one of the option where is shown in the new interface is `add subtask`. The user has to press that option.
+        3. A new interface is shown to the user where he can full fill the new subtask fields (expiration date, description, etc).
+        4. The user once finished full filling the subtask fields, submits it.
+        5. the system saves the new task linked with the task selected.
+    * **Exceptional scenario:**
+        3. The user leaves without completing parameters.
+            * The system reports all parameters must be completed and redisplay the form with the fields uncompleted and those which were completed.
+            * The user completes all parameters.
             * The system confirms the operation.
-          ii. El vencimiento es mayor al vencimiento de la meta madre.
-              El sistema informa el error y ​ pide que ingrese un vencimiento menor al vencimiento de la meta madre.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
