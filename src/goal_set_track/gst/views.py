@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 # Create your views here.
 @login_required
@@ -57,6 +59,7 @@ class RegisterView(View):
         new_user.last_name = last_name
         new_user.save()
         return HTTPr('Bienvenido ' + new_user.first_name + '. Esperamos que disfrutes del servicio.')
+
 
 @method_decorator(login_required, name='dispatch')
 class TaskCreateView(View):
@@ -131,3 +134,22 @@ class SubTaskDeleteView(View):
         t = SubTask.objects.get(name=request.POST['name'])
         t.delete()
         return HTTPr('Deleted.')
+
+method_decorator(login_required, name='dispatch')
+class CategoryCreateView(View):
+    @csrf_exempt
+    def get(self, request):
+        viewitems = {
+        }
+        return render(request, 'gst/category_create.html', viewitems)
+
+    @csrf_exempt
+    def post(self, request):
+        n = request.POST['name']
+        u = request.user
+        try:
+            new_category = Category.objects.create(user = u, name = n)
+        except Exception as e:
+            return HTTPr('You are not login.')
+
+        return HTTPr('Successful created category')
