@@ -21,10 +21,11 @@ class Category(models.Model):
 
 class Task(models.Model):
     name = models.CharField(max_length=50)
-    description = models.CharField(max_length=50)
+    description = models.CharField(max_length=300)
     category = models.ForeignKey(Category,  on_delete=models.CASCADE)
     created_datetime = models.DateTimeField(default=datetime.datetime.now)
     deadline = models.DateTimeField()
+    notify_user = models.BooleanField()
     complete = models.BooleanField()
 
     def __str__(self):
