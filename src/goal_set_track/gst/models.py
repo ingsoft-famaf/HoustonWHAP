@@ -33,10 +33,13 @@ class Task(models.Model):
 
 class SubTask(models.Model):
     name = models.CharField(max_length=50)
+    description = models.CharField(max_length=300)
     task = models.ForeignKey(Task)
     deadline = models.DateTimeField()
     created_datetime = models.DateTimeField(default=datetime.datetime.now)
-    complete = models.BooleanField
+    notify_user = models.BooleanField()
+    complete = models.BooleanField()
+
 
     def __str__(self):
         return self.name
