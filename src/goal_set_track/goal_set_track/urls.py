@@ -18,10 +18,12 @@ from django.contrib import admin
 from gst import views
 
 urlpatterns = [
-    url('home/', views.home, name='home'),
+    url(r'^admin/', admin.site.urls),
+    url(r'^$', views.home, name='home'),
     url('login', views.LoginView.as_view(), name='login'),
     url('user/login/', views.LoginView.as_view(), name='login'),
+    url('logout', views.LogoutView.as_view(), name='logout'),
+    url('user/logout/', views.LogoutView.as_view(), name='logout'),
     url('register', views.RegisterView.as_view(), name='register'),
-    url('user/register/', views.RegisterView.as_view(), name='register'),
-    url(r'^admin/', admin.site.urls)
+    url('user/register/', views.RegisterView.as_view(), name='register')
 ]

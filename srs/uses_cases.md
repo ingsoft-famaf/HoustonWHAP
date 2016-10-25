@@ -2,296 +2,280 @@
 
 List of all uses cases.
 
-1)  Register.
-2)  Login.
-3)  Logout.
-4)  Edit profile.
-5)  Validate user email.
-6)  Create new task.
-7)  Modify user task.
-8)  Delete user task.
-9)  Archive user task.
-10) Create new category.
-11) Modify category.
-12) Delete category.
-13) Create new user sub task.
-14) Modify user sub task.
-15) Delete user sub task.
-16) View user task.
-17) View user sub task.
-18) View category.
-19) View profile.
+1.  Register.
+2.  Login.
+3.  Logout.
+4.  Edit profile.
+5.  Validate user email.
+6.  Create new task.
+7.  Modify user task.h
+8.  Delete user task.
+9.  Archive user task.
+10. Create new category.
+11. Modify category.
+12. Delete category.
+13. Create new user sub task.
+14. Modify user sub task.
+15. Delete user sub task.
+16. View user task.
+17. View user sub task.
+18. View category.
+19. View profile.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 1: Register.
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 1: **Register.***
+    * **Primary actor**: User.
+    * **Precondition**: User has Internet connection and a browser installed and the Web Server is running.
+    * **Successful scenario**: 
+        1. User enters to the app's url and gets the login/register interface 
+        2. User clicks on "register" button and then types username, email and password in the correct boxes. 
+    * **Exceptional scenario**:
+        3. User types wrong the email format and he needs to type again.
+   
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 2: Login.
-    * Principal actor: User.
-    * Precondition: El servidor funciona correctamente.
-    * Sussefun scenario:
-        1. The user select the option "Login".
-        2. The system muestra la pantalla de login, con los parámetros: Nombre y password.
-        3. El sistema confirma el logeo exitoso y lo redirecciona a su lista de metas.
-    * Exceptional scenario:
-        3. i. El seudonimo o contraseña son invalidos.
-            * El sistema notifica error y que vuelva a intentar.
+* *Use case # 2: **Login.***
+    * **Primary actor**: User.
+    * **Precondition**: User has Internet connection, a browser installed  and an account in the system and the Web Server is running.
+    * **Successful scenario**:
+        1. The user enters to the app's url in the browser and gets the login/register interface.
+        2. The user clicks on "login" button and types email and password in the correct boxes.
+        3. The system shows an successful login in the screen and redirect the user to the main page where the personal goals are shown.
+    * **Exceptional scenario**:
+        1. The password or email is incorrect and user has to type it again.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 3: Logout.
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 3: **Logout.***
+    * **Primary actor**: User.
+    * **Precondition**: User has Internet connection, a browser installed, an account in the system and is already logged in, and the Web Server is running.
+    * **Successful scenario**:
+        1. User clicks on the "logout" button in the upper right edge of the screen.
+        2. System logs out the user redirects him to the login/register menu.
+
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 4: Edit profile.
-    * Principal actor: User.
-    * Precondition: TODO.
-    * Successful scenario:
-        1. The user select "Edit profile".
-        2. El sistema muestra el perfil del usuario con la posibilidad de hacer cambios en los parámetros que desea.
-        3. El usuario hace los cambios que desea.
-        4. El sistema confirma la operacion.
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 4: **Edit profile***.
+    * **Primary actor**: User.
+    * **Precondition**: User has Internet connection, a browser installed, an account in the system and is already logged in, and the Web Server is running.
+    * **Successful scenario**:
+        1. User clicks on "Edit profile" button.
+        2. A new interface, where user can edit his data, It's shown to him on the screen.
+        3. User changes the settings or information as he wishes and confirms the changes.
+        4. A successful message is shown to the user on the screen.
+    * **Exceptional scenario**:
+        3. Changes can't be applied and the user has to try again.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 5: Validate user email.
-    * Principal actor: TODO.
-    * Precondition: The user is login, y el servidor funciona correctamente.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 5: **Validate user email***.
+    * **Primary actor**: System.
+    * ** Precondition**: The user is logged in, and the server is running.
+    * **Successful scenario**:
+        1. User tries to login to the system 
+        2. System checks if the password and email are correct in the data base
+        3. If it's all OK, the login process will proceed successfully
+    * **Exceptional scenario**:
+        3. email or password don't match with any in the data base and will return an wrong validation message.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 6: Create new task.
-    * Principal actor: User.
-    * Precondition: The user is loggin on the system.
-    * Successful scenario:
-        1. The user choose the option "create new task".
-        2. The system sign a form to complete with nexts elements: Title, Descriptión, date and time to finish, sub-task.
-        3. The user complete the form.
-        4. The system confirms the operation.
-    * Exceptional scenario:
-        3. i. The user leaves without completing parameters.
-            * The system reports all parameters must be completed and redisplay the form as it had completed the user.
-            * The user complete all parameters.
+* *Use case # 6: **Create new task***.
+    * **Primary actor**: User.
+    * **Precondition**: User has Internet connection, a browser installed, an account in the system and is already logged in, and the Web Server is running.
+    * **Successful scenario**:
+        1. The user clicks on "create new task" option.
+        2. A interface will be shown by the System to the user where he can complete the fields which describes the task: Title, Description, expiration date.
+        3. The user full fills the form and submits the new task.
+        4. The system confirms the operation and shows a success message.
+    * **Exceptional scenario**:
+        3. The user submit the task without completing all parameters. The system reports all parameters must be completed and displays uncompleted form for further full filling by the user.
+
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 7: **Modify user task.***
+    * **Primary actor**: User.
+    * **Precondition**: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
+    * **Successful scenario**:
+
+        1. User selects a task by searching it or through the task list.
+        2. A new interface is shown to the user where he can see the fields of a task (description, expiration date, etc) and several options where one of them is `Modify`.
+        3. User selects the option `Modify`.
+        4. The interface changes where the fields of the task are modifiable.
+        5. User modifies the task as he desire, and submit the changes.
+        6. A successful message is shown to the user, and the system saves the changes.
+
+    * **Exceptional scenario**:
+        1. The user modifies a task's field with the wrong format, so the system will show a invalid format message.
+        2. The user has to modify again the field and continue the steps (from 5).
+
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 8: **Delete user task***.
+    * **Primary actor:** User.
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
+    * **Successful scenario**:
+        1. User selects a task by searching it or through the task list.
+        2. A new interface is shown to the user where he can see the fields of a task (description, expiration date, etc) and several options where one of them is `Delete`.
+        3. User selects the option `Delete`.
+        4. A warning message will be shown for the user if he is sure on delete the selected task.
+        5. User has to confirm the warning.
+        6. The system saves the changes.
+    * **Exceptional scenario:**
+        3. If the user deletes a wrong task, it can't be recovered.
+
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 9:** Archive user task.***
+    * **Primary actor:** User.
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
+    * **Successful scenario:**
+        1. User selects a task by searching it or through the task list.
+        2. A new interface is shown to the user where he can see the fields of a task (description, expiration date, etc) and several options where one of them is `Archive`.
+        3. User selects the option `Archive`.
+        4. The system archive the task and redirects the user to homepage.
+
+    * **Exceptional scenario:**
+        6. If the user archives the wrong task, it can be restored.
+        
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 10: **Create new category.***
+    * **Primary actor:** User.
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and the Web Server is running.
+    * **Successful scenario:**
+        1. The user selects `Create new category` from the main page.
+        2. A new interface is shown to the user where he can create a new category inserting its name.
+        3. User full fills the category name and submits it. **Exceptional scenario:**
+        3. User types wrong the category name and submit it. It can be modify.
+        4. User fills the Category name with an invalid format. A invalid format message it will be shown to the user and he has to proceed the remaining steps again (from 3).
+        3.  If the category name is already used, a message it will be shown and the user can search it in the `search Category` button in the main page.
+
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* **Use case # 11: Modify category.**
+    * **Primary actor:** User
+    * **Precondition**: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a category at least, and the Web Server is running.
+    * **Successful scenario:**
+        1. The user searches the category through `Search category` from the main page.
+        2. A new interface is shown to the user where all the categories are on a list. The user selects the category for modify it.
+        3. The name of the category is modifiable and the user types the new category's name and press `Enter`.
+        3. The system will save the changes.
+    * **Exceptional scenario:**
+        3. If the user selects a wrong category it can be deselected.
+        
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 12: **Delete category.***
+    * **Primary actor:** User.
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a category at least, and the Web Server is running.
+    * **Successful scenario:**
+        1. The user searches the category through `Search category` from the main page.
+        2. A new interface is shown to the user where all the categories are on a list. The user selects the category for deletion.
+        3. A warning message is shown to the user which he has to confirm the deletion.
+        3. If the message is confirmed the system will delete the category selected.
+    * **Exceptional scenario:**
+        3. If the user deletes a wrong category it can't be recovered.
+
+![separador](http://www.bigband.es/img_cm/separador.png)
+
+* *Use case # 13: **Create new user sub task***.
+    * **Primary actor:** User.
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
+    * **Successful scenario:**
+        1. The user selects a task from the list task or through searching it.
+        2. Once he selected one, one of the option where is shown in the new interface is `add subtask`. The user has to press that option.
+        3. A new interface is shown to the user where he can full fill the new subtask fields (expiration date, description, etc).
+        4. The user once finished full filling the subtask fields, submits it.
+        5. the system saves the new task linked with the task selected.
+    * **Exceptional scenario:**
+        3. The user leaves without completing parameters.
+            * The system reports all parameters must be completed and redisplay the form with the fields uncompleted and those which were completed.
+            * The user completes all parameters.
             * The system confirms the operation.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 7: Modify user task.
-    * Principal actor: User.
-    * Precondition: The user is loggin on the system. Has created at least one goal.
-    * Successful scenario:
-       
-
-        1. El usuario selecciona de sus lista de metas la que desea modificar.
-        2. El sistema muestra la meta con sus caracteristicas, y algunas opciones, entre ellas la opción "Modificar".
-        3. El usuario selecciona la opción Modificar.
-        4. El sistema muestra un formulario con las caracteristicas que puede modificar de la meta, entre ellas: submetas, tiempo de plazo, etc.
-        5. El usuario hace las modificaciones pertinentes.
-        6. El sistema confirma que se modificó exitosamente.
-
-    * Exceptional scenario:
-        5. i. El usuario hace modificaciones de forma incorrecta en algún parametro.
-            * El sistema informa de dicho error y resalta los parametros que tiene que reveer el usuario.
-            * El usuario hace los recambios necesarios.
-            * El sistema revisa que está todo bien y confirma la operación.
+* *Use case # 14: **Modify user sub task.***
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task and subtask at least, and the Web Server is running. Also user has already in mind which subtask wants to modify.
+    * **Successful scenario:**
+        1. For searching the subtask, first the user has to search the task which contains the subtask. For that see `Search Task` use case.
+        2. Once being in the Task interface, user has to select the subtask that wants to modify.
+        3. Once selected, a new interface is shown to the user where he can full fill the subtask fields (expiration date, description, etc).
+        4. User changes the fields he wants to modify.
+        5. Submit changes, and the system will save the modifications
+        
+    * **Exceptional scenario:**
+        3. If the subtask fields were filled with a wrong format, the system will let the user know by a promted message.
+         
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 8: Delete user task.
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 15: **Delete sub task.***
+    * **Primary actor:** User.
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task and subtask at least, and the Web Server is running. Also user has already in mind which subtask wants to delete.
+    * **Successful scenario:**
+        1. For searching the subtask, first the user has to search the task which contains the subtask. For that see `Search Task` use case.
+        2. Once being in the Task interface, user has to select the subtask that wants to delete.
+        3. Once selected, A new button appears next to the subtask that said `delete`. User has to click on it.
+        4. A warning message will be shown to the user, which he has to confirm the deletion.
+        5. Once confirmed, System will delete the subtask from user information.
+    * **Exceptional scenario:**
+        3. If mistaken subtask was deleted, the user can't recovered
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 9: Archive user task.
-    * Principal actor: Usuario.
-    * Precondition: El usuario está loggueado en el sistema, y ya tiene al menos una meta creada.
-    * Successful scenario:
-        1. El usuario selecciona de sus lista de metas sin archivar la que desea archivar.
-        2. El sistema muestra la meta con sus caracteristicas, y algunas opciones, entre ellas la opción "Archivar".
-        3. El usuario selecciona la opción archivar.
-        4. El sistema muestra una lista con los nombres de las carpetas ya creadas, y al finalizar una opción "crear carpeta"
-        5. El usuario selecciona una de las carpetas ya previamente creadas.
-        6. El sistema confirma que se archivo exitosamente.
-
-    * Exceptional scenario:
-        6. i. El usuario selecciona la opción "crear carpeta".
-            * El sistema muestra una ventana indicando que ponga el nombre de la nueva carpeta.
-            * El usuario completa la opción con el nombre de la nueva carpeta.
-            * El sistema revisa que no exista ya una carpeta con dicho nombre. Sino existe la crea y archiva la meta ahi, si sí existe indica: "Ya existe una carpeta con dicho nombre", archiva la meta en ésa carpeta y vuelve al menú inicial.
+* *Use case # 16: **View user task.***
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task at least, and the Web Server is running.
+    * **Successful scenario: **
+        1. In the main page it will appear all the user task where user can select it from there if not, on top of the page there is an option for search tasks.
+        2. User has to type the name of the task and after that he has to select the task he wants to view.
+        3. Once selected, a new interface it will be shown to the user where he can see the information of the task.
+    * **Exceptional scenario:**
+        3. If the user searches the task and no result appear is because the task does not exist or was deleted before.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 10: Create new category.
-    * Principal actor: User.
-    * Precondition: The user is login.
-    * Successful scenario:
-        1. The user select "Create new category".
-        2. El sistema muestra el campo para que se escriba el nombre de la categoria.
-        3. El usuario rellena el campo y hace clic en “Crear”.
-    * Exceptional scenario:
-        3. i. El usuario rellena con caracteres o formatos invalidos los datos de la meta.
-            * El sistema notifica que esta mal y pide que se reintente.
-          ii. The category alredy exist.
-            * El sistema notifica que ​ ya existe la categoria.
+* *Use case # 17: **View user sub task.***
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a task and subtask at least, and the Web Server is running.
+    * **Successful scenario:**
+        1. For viewing a subtask, user has to be on the task where the subtask is contained.
+        2. Once there, it will appear one or more subtask, user has to select the one he wants to view.
+        3. Once selected, a new interface it will be shown where the information of the subtask is.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 11: Modify category.
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* *Use case # 18: **View category.***
+    * **Primary actor:** User
+    * **Precondition**: User has Internet connection, a browser installed, an account in the system, is already logged in and has already created a category at least, and the Web Server is running.
+    * **Successful scenario:**
+        1. One of the first options is displayed on the menu of the main page is `view categories`.
+        2. User has to click that option and a list of categories are displayed which its names.
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 12: Delete category.
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
+* Use case # 19: View profile.***
+    * **Primary actor:** User.
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and the Web Server is running.
+    * **Successful scenario:**
+        1. In the main page, user has to select the option `View Profile`
+        2. An interface will be shown with user's information and other options (Modify, View Stats, etc).
 
 ![separador](http://www.bigband.es/img_cm/separador.png)
 
-* Use case # 13: Create new user sub task.
-    * Principal actor: User.
-    * Precondition: The user is login on the system and select a task.
-    * Successful scenario:
-        1. The user select "Create sub task".
-        2. The system sign a form to complete with nexts elements: Title, Descriptión, date and time to finish.
-        3. The user complete the form.
-        4. The system confirms the operation.
+* Use case # 20: View Stats
+    * **Primary actor:** User
+    * **Precondition:** User has Internet connection, a browser installed, an account in the system, is already logged in and the Web Server is running.
+    * **Successful scenario:**
+        1. In the `View Profile` interface the user has to select the option `View Stats`.
+        2. Once selected, an interface will be shown to the user where the number of task where accomplished and other stats.
     * Exceptional scenario:
-        3. i. The user leaves without completing parameters.
-            * The system reports all parameters must be completed and redisplay the form as it had completed the user.
-            * The user complete all parameters.
-            * The system confirms the operation.
-          ii. El vencimiento es mayor al vencimiento de la meta madre.
-              El sistema informa el error y ​ pide que ingrese un vencimiento menor al vencimiento de la meta madre.
-
-![separador](http://www.bigband.es/img_cm/separador.png)
-
-* Use case # 14: Modify user sub task.
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
-
-![separador](http://www.bigband.es/img_cm/separador.png)
-
-* Use case # 15: Delete user sub task.
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
-
-![separador](http://www.bigband.es/img_cm/separador.png)
-
-* Use case # 16: View user task.
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
-
-![separador](http://www.bigband.es/img_cm/separador.png)
-
-* Use case # 17: View user sub task.
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
-
-![separador](http://www.bigband.es/img_cm/separador.png)
-
-* Use case # 18: View category.
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
-
-![separador](http://www.bigband.es/img_cm/separador.png)
-
-* Use case # 19: View profile.
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
-
-![separador](http://www.bigband.es/img_cm/separador.png)
-
-* Use case # 20: .
-    * Principal actor: TODO.
-    * Precondition: TODO.
-    * Successful scenario: TODO.
-        1. .
-        2. .
-    * Exceptional scenario:
-        3. i. TODO.
-            * TODO.
-
+        3. If the number of task accomplished is zero, is because the user has not accomplish a single task.
+        
 ![separador](http://www.bigband.es/img_cm/separador.png)
