@@ -1,5 +1,7 @@
-{% extends 'gst/layout.html' %}
+{% extends 'layout.html' %}
 
+{% csrf_token %}
+{% block content %}
 <div class='container container-fluid'>
   <form method='POST' class="form-signin">
     <h2 class="form-signin-heading">Please log in</h2>
@@ -10,3 +12,4 @@
       <button type="submit" class="btn btn-lg btn-default btn-block">Login</button>
   </form>
 </div>
+{% endblock %}
