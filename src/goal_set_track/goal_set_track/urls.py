@@ -25,6 +25,6 @@ urlpatterns = [
     url('logout', views.LogoutView.as_view(), name='logout'),
     url('user/logout/', views.LogoutView.as_view(), name='logout'),
     url('register', views.RegisterView.as_view(), name='register'),
-    url('user/register/', views.RegisterView.as_view(), name='register')
-    url('user/create/task/', views.TaskCreateView.as_view(), name='New Task')
+    url('user/register/', views.RegisterView.as_view(), name='register'),
+    url('user/new/task', views.TaskCreateView.as_view(), name='new task')
 ]
