@@ -30,7 +30,7 @@ class RegisterView(View):
     def get(self, request):
         viewitems = {
         }
-        return render(request, 'register.html', viewitems)
+        return render(request, 'gst/register.html', viewitems)
 
     @csrf_exempt
     def post(self, request):
