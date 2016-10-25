@@ -153,3 +153,20 @@ class CategoryCreateView(View):
             return HTTPr('You are not login.')
 
         return HTTPr('Successful created category')
+        
+method_decorator(login_required, name='dispatch')
+class CategoryObserveView(View):
+    @csrf_exempt
+    def get(self, request):
+        viewitems = {
+        }
+        u = request.user
+        categorys = Category.objects.filter(user = u)
+
+        length = len(categorys)
+        i=0
+        while i<length:
+            print categorys[i]
+            i = i+1
+
+        return render(request, 'gst/category_observe.html', {'categorys': categorys})
