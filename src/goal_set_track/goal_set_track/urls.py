@@ -22,6 +22,9 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url('login', views.LoginView.as_view(), name='login'),
     url('user/login/', views.LoginView.as_view(), name='login'),
+    url('logout', views.LogoutView.as_view(), name='logout'),
+    url('user/logout/', views.LogoutView.as_view(), name='logout'),
     url('register', views.RegisterView.as_view(), name='register'),
-    url('user/register/', views.RegisterView.as_view(), name='register')
+    url('user/register/', views.RegisterView.as_view(), name='register'),
+    url('user/new/task', views.TaskCreateView.as_view(), name='new task')
 ]
