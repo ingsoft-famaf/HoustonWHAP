@@ -1,0 +1,38 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="/" class="navbar-brand">
+        GST
+      </a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="/about">
+          About
+        </a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      {% if username %}
+        <li>
+          <a href='/me'>
+            {{ username }}
+          </a>
+        </li>
+        <li>
+          <a href="/logout">
+            <span class="glyphicon glyphicon-log-out"></span>
+            Logout
+          </a>
+        </li>
+      {% else %}
+        <li>
+          <a href="/login">
+            <span class="glyphicon glyphicon-log-in"></span>
+            Login
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
