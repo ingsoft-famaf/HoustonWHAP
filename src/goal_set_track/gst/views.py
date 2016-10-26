@@ -201,4 +201,5 @@ class CategoryDeleteView(View):
         u = request.user
         print u.username
         Category.objects.filter(name=n).filter(user=u).delete()
+
         return HTTPr('Successful deleted category')
