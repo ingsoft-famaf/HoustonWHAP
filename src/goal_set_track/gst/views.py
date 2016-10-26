@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 # Create your views here.
 @login_required
@@ -58,13 +60,14 @@ class RegisterView(View):
         new_user.save()
         return HTTPr('Bienvenido ' + new_user.first_name + '. Esperamos que disfrutes del servicio.')
 
+
 @method_decorator(login_required, name='dispatch')
 class TaskCreateView(View):
     @csrf_protect
     def get(self, request):
         viewitems = {
         }
-        return render(request, 'newtask.html', viewitems)
+        return render(request, 'task_create.html', viewitems)
 
     @csrf_protect
     def post(self, request):
@@ -79,3 +82,106 @@ class TaskCreateView(View):
         new_task = Task.objects.create(name = nm, description = d, category = c,
              created_datetime = cr, deadline = dd, notify_user = nf, complete = cm)
         return render(request, 'gst/index.html', viewitems)
+
+class TaskModifyView(View):
+    @csrf_protect
+    def get(self, request):
+        viewitems = {
+        }
+        return render(request, 'task/task_modify.html', viewitems)
+
+    @csrf_protect
+    def post(self, request):
+        t = Task.objects.get(name=request.POST['name'])
+        t.name = name = request.POST['new_name']
+        t.description = request.POST['description']
+        t.deadline = request.POST['deadline']
+        t.notify_user = request.POST['notify_user']
+        t.complete = request.POST['complete']
+        return HTTPr('Updated.')
+
+@method_decorator(login_required, name='dispatch')
+class TaskDeleteView(View):
+    @csrf_protect
+    def get(self, request):
+        viewitems = {
+        }
+        return render(request, 'task/task_delete.html', viewitems)
+
+    @csrf_protect
+    def post(self, request):
+        t = SubTask.objects.get(name=request.POST['name'])
+        t.delete()
+        return HTTPr('Deleted.')
+
+#@method_decorator(login_required, name='dispatch')
+class SubTaskCreateView(View):
+    @csrf_protect
+    def get(self, request):
+        viewitems = {
+        }
+        return render(request, 'subtask/sub_task_create.html', viewitems)
+
+    @csrf_protect
+    def post(delf, request):
+        name = request.POST['name']
+        task = request.POST['task']
+        deadline = request.POST['deadline']
+        created_datetime = request.POST['created_datetime']
+        complete = request.POST['complete']
+        new_sub_task = User.objects.create(name=name, task=task,
+            deadline=deadline, created_datetime=created_datetime,
+            complete=complete)
+        return HTTPr('Created.')
+
+#@method_decorator(login_required, name='dispatch')
+class SubTaskModifyView(View):
+    @csrf_protect
+    def get(self, request):
+        viewitems = {
+        }
+        return render(request, 'subtask/sub_task_modify.html', viewitems)
+
+    @csrf_protect
+    def post(self, request):
+        t = SubTask.objects.get(name=request.POST['name'])
+        t.name = name = request.POST['new_name']
+        t.task = request.POST['new_task']
+        t.deadline = request.POST['new_deadline']
+        t.complete = request.POST['new_complete']
+        t.save()
+        return HTTPr('Updated.')
+
+#@method_decorator(login_required, name='dispatch')
+class SubTaskDeleteView(View):
+    @csrf_protect
+    def get(self, request):
+        viewitems = {
+        }
+        return render(request, 'subtask/sub_task_delete.html', viewitems)
+
+    @csrf_protect
+    def post(self, request):
+        t = SubTask.objects.get(name=request.POST['name'])
+        t.delete()
+        return HTTPr('Deleted.')
+
+
+method_decorator(login_required, name='dispatch')
+class CategoryCreateView(View):
+    @csrf_exempt
+    def get(self, request):
+        viewitems = {
+        }
+        return render(request, 'gst/category_create.html', viewitems)
+
+    @csrf_exempt
+    def post(self, request):
+        n = request.POST['name']
+        u = request.user
+        try:
+            new_category = Category.objects.create(user = u, name = n)
+        except Exception as e:
+            return HTTPr('You are not login.')
+
+        return HTTPr('Successful created category')
