@@ -166,7 +166,6 @@ class SubTaskDeleteView(View):
         t.delete()
         return HTTPr('Deleted.')
 
-
 method_decorator(login_required, name='dispatch')
 class CategoryCreateView(View):
     @csrf_exempt
@@ -183,5 +182,5 @@ class CategoryCreateView(View):
             new_category = Category.objects.create(user = u, name = n)
         except Exception as e:
             return HTTPr('You are not login.')
-
+  
         return HTTPr('Successful created category')
