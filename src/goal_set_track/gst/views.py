@@ -181,11 +181,9 @@ class CategoryCreateView(View):
         u = request.user
         try:
             new_category = Category.objects.create(user = u, name = n)
+            return HTTPr('Successful created category')
         except Exception as e:
             return HTTPr('You are not login.')
-<<<<<<< HEAD
-
-        return HTTPr('Successful created category')
 
 method_decorator(login_required, name='dispatch')
 class CategoryView(View):
@@ -235,7 +233,3 @@ class CategoryDeleteView(View):
         Category.objects.filter(name=n).filter(user=u).delete()
 
         return HTTPr('Successful deleted category')
-=======
-  
-        return HTTPr('Successful created category')
->>>>>>> 84f1f68470d0cacb5f4551f59f1c5c312027cc4d
