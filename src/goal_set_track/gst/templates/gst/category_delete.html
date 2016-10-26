@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class='container container-fluid'>
+  <form method='POST' class="form-signin">
+	{% csrf_token %}
+
+    {% for category in categorys %}
+    	<p>{{ category }}</p>
+    {% endfor %}
+
+    <h2 class="form-signin-heading">Category you whany delete</h2>
+
+	  <label for="inputName" class="sr-only">Name</label>
+	  <input id="inputName" name="name" placeholder="category whant delete" required="" type='text'/><br>
+
+      <button type="submit" class="btn btn-lg btn-default btn-block">Go</button>
+
+  </form>
+</div>
+{% endblock %}

@@ -135,6 +135,7 @@ class SubTaskDeleteView(View):
         t.delete()
         return HTTPr('Deleted.')
 
+#******************************************************
 method_decorator(login_required, name='dispatch')
 class CategoryCreateView(View):
     @csrf_exempt
@@ -153,3 +154,52 @@ class CategoryCreateView(View):
             return HTTPr('You are not login.')
 
         return HTTPr('Successful created category')
+
+method_decorator(login_required, name='dispatch')
+class CategoryView(View):
+    @csrf_exempt
+    def get(self, request):
+        viewitems = {
+        }
+        u = request.user
+        if u.is_anonymous:
+            return HTTPr('You are not login.')
+        else:
+            categorys = Category.objects.filter(user = u)
+            length = len(categorys)
+            i=0
+            while i<length:
+                print categorys[i]
+                i = i+1
+
+            return render(request, 'gst/category.html', {'categorys': categorys})
+
+
+method_decorator(login_required, name='dispatch')
+class CategoryDeleteView(View):
+    @csrf_exempt
+    def get(self, request):
+        viewitems = {
+        }
+        u = request.user
+        if u.is_anonymous:
+            return HTTPr('You are not login.')
+        else:
+            categorys = Category.objects.filter(user = u)
+            length = len(categorys)
+            i=0
+            while i<length:
+                print categorys[i]
+                i = i+1
+
+            return render(request, 'gst/category_delete.html', {'categorys': categorys})
+
+    @csrf_exempt
+    def post(self, request):
+        n = request.POST['name']
+        print "NNN = "+n
+        u = request.user
+        print u.username
+        Category.objects.filter(name=n).filter(user=u).delete()
+
+        return HTTPr('Successful deleted category')

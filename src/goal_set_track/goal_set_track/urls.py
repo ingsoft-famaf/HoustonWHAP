@@ -27,5 +27,8 @@ urlpatterns = [
     url('register', views.RegisterView.as_view(), name='register'),
     url('user/register/', views.RegisterView.as_view(), name='register'),
     url('user/new/task', views.TaskCreateView.as_view(), name='new task'),
-    url('category/new', views.CategoryCreateView.as_view(), name='new category')
+
+    url('category/new', views.CategoryCreateView.as_view(), name='new category'),
+    url('category/delete', views.CategoryDeleteView.as_view(), name='delete category'),
+    url('category', views.CategoryView.as_view(), name='category')
 ]
