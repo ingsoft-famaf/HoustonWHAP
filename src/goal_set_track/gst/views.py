@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 # Create your views here.
 @login_required
@@ -58,13 +60,14 @@ class RegisterView(View):
         new_user.save()
         return HTTPr('Bienvenido ' + new_user.first_name + '. Esperamos que disfrutes del servicio.')
 
+
 @method_decorator(login_required, name='dispatch')
 class TaskCreateView(View):
     @csrf_protect
     def get(self, request):
         viewitems = {
         }
-        return render(request, 'newtask.html', viewitems)
+        return render(request, 'task_create.html', viewitems)
 
     @csrf_protect
     def post(self, request):
@@ -79,6 +82,38 @@ class TaskCreateView(View):
         new_task = Task.objects.create(name = nm, description = d, category = c,
              created_datetime = cr, deadline = dd, notify_user = nf, complete = cm)
         return render(request, 'gst/index.html', viewitems)
+
+@login_required
+class TaskModifyView(View):
+    @csrf_protect
+    def get(self, request):
+        viewitems = {
+        }
+        return render(request, 'task/task_modify.html', viewitems)
+
+    @csrf_protect
+    def post(self, request):
+        t = Task.objects.get(name=request.POST['name'])
+        t.name = name = request.POST['new_name']
+        t.description = request.POST['description']
+        t.deadline = request.POST['deadline']
+        t.notify_user = request.POST['notify_user']
+        t.complete = request.POST['complete']
+        return HTTPr('Updated.')
+
+@method_decorator(login_required, name='dispatch')
+class TaskDeleteView(View):
+    @csrf_protect
+    def get(self, request):
+        viewitems = {
+        }
+        return render(request, 'task/task_delete.html', viewitems)
+
+    @csrf_protect
+    def post(self, request):
+        t = SubTask.objects.get(name=request.POST['name'])
+        t.delete()
+        return HTTPr('Deleted.')
 
 @login_required
 class SubTaskCreateView(View):
@@ -149,3 +184,100 @@ class SubTaskEditView(View):
         t.complete = request.POST['new_complete']
         t.save()
         return HTTPr('Successful edited the sub task.')
+
+method_decorator(login_required, name='dispatch')
+class CategoryCreateView(View):
+    @csrf_exempt
+    def get(self, request):
+        viewitems = {
+        }
+        return render(request, 'gst/category_create.html', viewitems)
+
+    @csrf_exempt
+    def post(self, request):
+        n = request.POST['name']
+        u = request.user
+        try:
+            new_category = Category.objects.create(user = u, name = n)
+            return HTTPr('Successful created category')
+        except Exception as e:
+            return HTTPr('You are not login.')
+
+method_decorator(login_required, name='dispatch')
+class CategoryView(View):
+    @csrf_exempt
+    def get(self, request):
+        viewitems = {
+        }
+        u = request.user
+        if u.is_anonymous:
+            return HTTPr('You are not login.')
+        else:
+            categorys = Category.objects.filter(user = u)
+            length = len(categorys)
+            i=0
+            while i<length:
+                print categorys[i]
+                i = i+1
+
+            return render(request, 'gst/category.html', {'categorys': categorys})
+
+method_decorator(login_required, name='dispatch')
+class CategoryDeleteView(View):
+    @csrf_exempt
+    def get(self, request):
+        viewitems = {
+        }
+        u = request.user
+        if u.is_anonymous:
+            return HTTPr('You are not login.')
+        else:
+            categorys = Category.objects.filter(user = u)
+            length = len(categorys)
+            i=0
+            while i<length:
+                print categorys[i]
+                i = i+1
+
+            return render(request, 'gst/category_delete.html', {'categorys': categorys})
+
+    @csrf_exempt
+    def post(self, request):
+        n = request.POST['name']
+        print "NNN = "+n
+        u = request.user
+        print u.username
+        Category.objects.filter(name=n).filter(user=u).delete()
+
+        return HTTPr('Successful deleted category')
+
+
+method_decorator(login_required, name='dispatch')
+class CategoryEditView(View):
+    @csrf_exempt
+    def get(self, request):
+        viewitems = {
+        }
+        u = request.user
+        if u.is_anonymous:
+            return HTTPr('You are not login.')
+        else:
+            categorys = Category.objects.filter(user = u)
+            length = len(categorys)
+            i=0
+            while i<length:
+                print categorys[i]
+                i = i+1
+
+            return render(request, 'gst/category_delete.html', {'categorys': categorys, 'edit':True})
+
+    @csrf_exempt
+    def post(self, request):
+        oldName = request.POST['oldName']
+        newName = request.POST['newName']
+        print "oldName = " + oldName + " newName = " + newName
+        u = request.user
+        print u.username
+
+        Category.objects.filter(name=oldName).filter(user=u).update(name=newName)
+        return HTTPr('Successful edited the category')
