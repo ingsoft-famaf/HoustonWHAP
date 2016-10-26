@@ -30,5 +30,6 @@ urlpatterns = [
 
     url('category/new', views.CategoryCreateView.as_view(), name='new category'),
     url('category/delete', views.CategoryDeleteView.as_view(), name='delete category'),
+    url('category/edit', views.CategoryEditView.as_view(), name='edit category'),
     url('category', views.CategoryView.as_view(), name='category')
 ]

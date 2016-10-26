@@ -204,7 +204,6 @@ class CategoryView(View):
 
             return render(request, 'gst/category.html', {'categorys': categorys})
 
-
 method_decorator(login_required, name='dispatch')
 class CategoryDeleteView(View):
     @csrf_exempt
@@ -233,3 +232,34 @@ class CategoryDeleteView(View):
         Category.objects.filter(name=n).filter(user=u).delete()
 
         return HTTPr('Successful deleted category')
+
+
+method_decorator(login_required, name='dispatch')
+class CategoryEditView(View):
+    @csrf_exempt
+    def get(self, request):
+        viewitems = {
+        }
+        u = request.user
+        if u.is_anonymous:
+            return HTTPr('You are not login.')
+        else:
+            categorys = Category.objects.filter(user = u)
+            length = len(categorys)
+            i=0
+            while i<length:
+                print categorys[i]
+                i = i+1
+
+            return render(request, 'gst/category_delete.html', {'categorys': categorys, 'edit':True})
+
+    @csrf_exempt
+    def post(self, request):
+        oldName = request.POST['oldName']
+        newName = request.POST['newName']
+        print "oldName = " + oldName + " newName = " + newName
+        u = request.user
+        print u.username
+
+        Category.objects.filter(name=oldName).filter(user=u).update(name=newName)
+        return HTTPr('Successful edited the category')
