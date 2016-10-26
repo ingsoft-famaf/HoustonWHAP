@@ -67,7 +67,7 @@ class TaskCreateView(View):
     def get(self, request):
         viewitems = {
         }
-        return render(request, 'newtask.html', viewitems)
+        return render(request, 'task_create.html', viewitems)
 
     @csrf_protect
     def post(self, request):
@@ -82,6 +82,37 @@ class TaskCreateView(View):
         new_task = Task.objects.create(name = nm, description = d, category = c,
              created_datetime = cr, deadline = dd, notify_user = nf, complete = cm)
         return render(request, 'gst/index.html', viewitems)
+
+class TaskModifyView(View):
+    @csrf_protect
+    def get(self, request):
+        viewitems = {
+        }
+        return render(request, 'task/task_modify.html', viewitems)
+
+    @csrf_protect
+    def post(self, request):
+        t = Task.objects.get(name=request.POST['name'])
+        t.name = name = request.POST['new_name']
+        t.description = request.POST['description']
+        t.deadline = request.POST['deadline']
+        t.notify_user = request.POST['notify_user']
+        t.complete = request.POST['complete']
+        return HTTPr('Updated.')
+
+@method_decorator(login_required, name='dispatch')
+class TaskDeleteView(View):
+    @csrf_protect
+    def get(self, request):
+        viewitems = {
+        }
+        return render(request, 'task/task_delete.html', viewitems)
+
+    @csrf_protect
+    def post(self, request):
+        t = SubTask.objects.get(name=request.POST['name'])
+        t.delete()
+        return HTTPr('Deleted.')
 
 #@method_decorator(login_required, name='dispatch')
 class SubTaskCreateView(View):
@@ -152,6 +183,7 @@ class CategoryCreateView(View):
             new_category = Category.objects.create(user = u, name = n)
         except Exception as e:
             return HTTPr('You are not login.')
+<<<<<<< HEAD
 
         return HTTPr('Successful created category')
 
@@ -203,3 +235,7 @@ class CategoryDeleteView(View):
         Category.objects.filter(name=n).filter(user=u).delete()
 
         return HTTPr('Successful deleted category')
+=======
+  
+        return HTTPr('Successful created category')
+>>>>>>> 84f1f68470d0cacb5f4551f59f1c5c312027cc4d
