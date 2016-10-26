@@ -27,9 +27,15 @@ urlpatterns = [
     url('register', views.RegisterView.as_view(), name='register'),
     url('user/register/', views.RegisterView.as_view(), name='register'),
     url('user/new/task', views.TaskCreateView.as_view(), name='new task'),
+<<<<<<< HEAD
+    url('sub_task/create', views.SubTaskCreateView.as_view(), name='create sub task'),
+    url('sub_task/modify', views.SubTaskEditView.as_view(), name='modify sub task'),
+    url('sub_task/delete', views.SubTaskDeleteView.as_view, name='delete sub task'),
+=======
 
     url('category/new', views.CategoryCreateView.as_view(), name='new category'),
     url('category/delete', views.CategoryDeleteView.as_view(), name='delete category'),
     url('category/edit', views.CategoryEditView.as_view(), name='edit category'),
     url('category', views.CategoryView.as_view(), name='category')
+>>>>>>> devel
 ]

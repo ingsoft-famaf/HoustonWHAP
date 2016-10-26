@@ -83,6 +83,7 @@ class TaskCreateView(View):
              created_datetime = cr, deadline = dd, notify_user = nf, complete = cm)
         return render(request, 'gst/index.html', viewitems)
 
+@login_required
 class TaskModifyView(View):
     @csrf_protect
     def get(self, request):
@@ -114,59 +115,76 @@ class TaskDeleteView(View):
         t.delete()
         return HTTPr('Deleted.')
 
-#@method_decorator(login_required, name='dispatch')
+@login_required
 class SubTaskCreateView(View):
-    @csrf_protect
     def get(self, request):
         viewitems = {
         }
-        return render(request, 'subtask/sub_task_create.html', viewitems)
+        return render(request, 'gst/sub_task_create.html', viewitems)
 
-    @csrf_protect
-    def post(delf, request):
+    def post(self, request):
         name = request.POST['name']
         task = request.POST['task']
         deadline = request.POST['deadline']
+        if t.deadline > Task.objects.get(name=t.task).deadline:
+            return HTTPr('The deadline is bigger than task mother.')
         created_datetime = request.POST['created_datetime']
-        complete = request.POST['complete']
-        new_sub_task = User.objects.create(name=name, task=task,
-            deadline=deadline, created_datetime=created_datetime,
-            complete=complete)
-        return HTTPr('Created.')
+        complete =
+        new_sub_task = SubTask.objects.create(
+            name=name,
+            task=task,
+            deadline=deadline,
+            created_datetime=created_datetime,
+            complete=complete
+            )
+        new_sub_task = SubTask.objects.create(user=request.user, name=n)
+        return HTTPr('Successful created sub task.')
 
-#@method_decorator(login_required, name='dispatch')
-class SubTaskModifyView(View):
-    @csrf_protect
+@login_required
+class SubTaskView(View):
     def get(self, request):
         viewitems = {
         }
-        return render(request, 'subtask/sub_task_modify.html', viewitems)
+        subtasks = SubTask.objects.filter(user=request.user)
+        for subtask in subtasks
+            print subtask
+        return render(request, 'gst/sub_task.html', {'subtasks': subtasks})
 
-    @csrf_protect
+@login_required
+class SubTaskDeleteView(View):
+    def get(self, request):
+        viewitems = {
+        }
+        subtasks = SubTask.objects.filter(user=request.user)
+        for subtask in subtasks
+            print subtask
+        return render(request, 'gst/sub_task_delete.html', {'subtasks': subtasks})
+
+    def post(self, request):
+        n = request.POST['name']
+        SubTask.objects.filter(name=n).filter(user=request.user).delete()
+        return HTTPr('Successful deleted sub task.')
+
+@login_required
+class SubTaskEditView(View):
+    def get(self, request):
+        viewitems = {
+        }
+        subtasks = SubTask.objects.filter(user=request.user)
+        for subtask in subtasks
+            print subtask
+        return render(request, 'gst/sub_task_modify.html', {'subtasks': subtasks, 'edit':True})
+
     def post(self, request):
         t = SubTask.objects.get(name=request.POST['name'])
-        t.name = name = request.POST['new_name']
-        t.task = request.POST['new_task']
+        t.name = request.POST['new_name']
         t.deadline = request.POST['new_deadline']
+        if t.deadline > Task.objects.get(name=t.task, user=request.user).deadline:
+            return HTTPr('SubTask deadline should be shorter than task deadline.')
         t.complete = request.POST['new_complete']
         t.save()
-        return HTTPr('Updated.')
+        return HTTPr('Successful edited the sub task.')
 
-#@method_decorator(login_required, name='dispatch')
-class SubTaskDeleteView(View):
-    @csrf_protect
-    def get(self, request):
-        viewitems = {
-        }
-        return render(request, 'subtask/sub_task_delete.html', viewitems)
-
-    @csrf_protect
-    def post(self, request):
-        t = SubTask.objects.get(name=request.POST['name'])
-        t.delete()
-        return HTTPr('Deleted.')
-
-#******************************************************
 method_decorator(login_required, name='dispatch')
 class CategoryCreateView(View):
     @csrf_exempt
