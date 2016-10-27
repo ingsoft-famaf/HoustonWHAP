@@ -38,9 +38,10 @@ class SubTask(models.Model):
         return self.name
 
 class Comment(models.Model):
-    post = models.ForeignKey('Task', related_name='comments')
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
     text = models.TextField()
-    created_date = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.text
