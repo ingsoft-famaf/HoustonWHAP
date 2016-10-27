@@ -13,13 +13,14 @@ class Category(models.Model):
         return self.name
 
 class Task(models.Model):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=300, default='DEFAULT')
-    category = models.ForeignKey(Category,  on_delete=models.CASCADE)
-    created_datetime = models.DateTimeField(default=datetime.datetime.now)
-    deadline = models.DateTimeField()
-    notify_user = models.BooleanField(default='False')
-    complete = models.BooleanField(default='False')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50, null=False, blank=False)
+    description = models.CharField(max_length=300, blank=True, default='')
+    created_at = models.DateTimeField(auto_now_add=True)
+    deadline = models.DateTimeField(null=True, blank=True)
+    notify_user = models.BooleanField(default=False)
+    complete = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
