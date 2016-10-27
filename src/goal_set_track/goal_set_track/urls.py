@@ -20,22 +20,22 @@ from gst import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
-    url('login', views.LoginView.as_view(), name='login'),
-    url('user/login/', views.LoginView.as_view(), name='login'),
-    url('logout', views.LogoutView.as_view(), name='logout'),
-    url('user/logout/', views.LogoutView.as_view(), name='logout'),
-    url('register', views.RegisterView.as_view(), name='register'),
-    url('user/register/', views.RegisterView.as_view(), name='register'),
-    url('user/new/task', views.TaskCreateView.as_view(), name='new task'),
-<<<<<<< HEAD
-    url('sub_task/create', views.SubTaskCreateView.as_view(), name='create sub task'),
-    url('sub_task/modify', views.SubTaskEditView.as_view(), name='modify sub task'),
-    url('sub_task/delete', views.SubTaskDeleteView.as_view, name='delete sub task'),
-=======
+    url(r'^login/$', views.LoginView.as_view(), name='login'),
+    url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
+    url(r'^register/$', views.RegisterView.as_view(), name='register'),
 
-    url('category/new', views.CategoryCreateView.as_view(), name='new category'),
-    url('category/delete', views.CategoryDeleteView.as_view(), name='delete category'),
-    url('category/edit', views.CategoryEditView.as_view(), name='edit category'),
-    url('category', views.CategoryView.as_view(), name='category')
->>>>>>> devel
+    url(r'^category/$', views.CategoryView.as_view(), name='category'),
+    url(r'^category/create/$', views.CategoryCreateView.as_view(), name='category_create'),
+    url(r'^category/edit/$', views.CategoryEditView.as_view(), name='category_edit'),
+    url(r'^category/delete/$', views.CategoryDeleteView.as_view(), name='category_delete'),
+
+    url(r'^category/(?P<category>[\w]+)/$', views.TaskView.as_view(), name='task'),
+    url(r'^category/(?P<category>[\w]+)/task/create/$', views.TaskCreateView.as_view(), name='task_create'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/edit/$', views.TaskEditView.as_view(), name='task_edit'),
+    url(r'^category/(?P<category>[\w]+)/task/delete/$', views.TaskDeleteView.as_view, name='task_delete'),
+
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/$', views.SubTaskView.as_view(), name='subtask'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/create/$', views.SubTaskCreateView.as_view(), name='subtask_create'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/(?P<subtask>[\w]+)/edit/$', views.SubTaskEditView.as_view(), name='subtask_edit'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/delete/$', views.SubTaskDeleteView.as_view, name='subtask_delete'),
 ]
