@@ -21,8 +21,13 @@ class SubTask(models.Model):
 		return self.name
 
 class Category(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-	name = models.CharField(max_leng=50, primary_key=True)
+    user = models.ForeignKey(User,
+                             on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50,
+                            null=False,
+                            blank=False)
 
-	def __str__(self):
-		return self.name
+    def __str__(self):
+        return self.name
+
