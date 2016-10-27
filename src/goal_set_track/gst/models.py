@@ -36,3 +36,11 @@ class SubTask(models.Model):
 
     def __str__(self):
         return self.name
+
+class Comment(models.Model):
+    post = models.ForeignKey('Task', related_name='comments')
+    text = models.TextField()
+    created_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.text
