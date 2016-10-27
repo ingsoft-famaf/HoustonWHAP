@@ -1,10 +1,25 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-{% for category in categorys %}
 
-	<a href="">{{ category }} <br></a>
-
-    
+<h2>Categorías:</h2>
+<ul>
+{% for category in categories %}
+  <li>
+    <a href='{% url 'task' category.id %}'>{{ category.name }}</a>
+  </li>
 {% endfor %}
+</ul>
+
+<div class='container container-fluid'>
+  <form method='POST' class="form-signin" action='{% url 'category_create' %}'>
+	{% csrf_token %}
+    <h2 class="form-signin-heading">Categoría nueva</h2>
+	  <label for="inputName" class="sr-only">Name</label>
+	  <input id="inputName" name="name" placeholder="Ej.: Compras" required type='text'/><br>
+            
+      <button type="submit" class="btn btn-lg btn-default btn-block">Agregar</button>
+  </form>
+</div>
+
 {% endblock %}

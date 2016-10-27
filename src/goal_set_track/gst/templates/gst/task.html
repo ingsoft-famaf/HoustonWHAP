@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h2>Categoría: {{ category.name }}</h2>
+<h3>Tareas:</h3>
+<ul>
+{% for task in tasks %}
+  {% if task.complete %}
+    <li>
+      <form method='POST' action='{% url 'task_edit' category.id task.id %}'>
+	    {% csrf_token %}
+        <button type='submit' name='complete' value='' class='glyphicon glyphicon-remove'></button>
+      </form>
+      <a href='{% url 'subtask' category.id task.id %}'>{{ task.name }}</a>
+    </li>
+  {% else %}
+    <li>
+      <form method='POST' action='{% url 'task_edit' category.id task.id %}'>
+	    {% csrf_token %}
+        <button type='submit' name='complete' value=True class='glyphicon glyphicon-ok'></button>
+      </form>
+      <a href='{% url 'subtask' category.id task.id %}'>{{ task.name }}</a>
+    </li>
+  {% endif %}
+{% endfor %}
+</ul>
+
+<div class='container container-fluid'>
+  <form method='POST' class="form-signin" action='{% url 'task_create' category.id %}'>
+	{% csrf_token %}
+    <h2 class="form-signin-heading">Tarea nueva</h2>
+	  Nombre: <input name="name" placeholder="Comprar verduras" required type='text'/><br>
+	  Descripción: <input name="description" placeholder="Ir al super" type='text'/><br>
+	  Fecha de vencimiento: <input name="deadline" placeholder="2018-12-23 17:09:45" type='datetime-local'/><br>
+	  Notificarme: <input name="notify_user" type='checkbox'/><br>
+            
+      <button type="submit" class="btn btn-lg btn-default btn-block">Agregar</button>
+  </form>
+</div>
+
+{% endblock %}
