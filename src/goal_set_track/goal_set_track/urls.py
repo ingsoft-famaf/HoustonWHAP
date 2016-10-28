@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from gst import login_view, task_view, subtask_view, category_view
+from gst import user_view, task_view, subtask_view, category_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', login_view.home, name='home'),
-    url(r'^login/$', login_view.LoginView.as_view(), name='login'),
-    url(r'^logout/$', login_view.LogoutView.as_view(), name='logout'),
-    url(r'^register/$', login_view.RegisterView.as_view(), name='register'),
+    url(r'^$', user_view.home, name='home'),
+    url(r'^login/$', user_view.LoginView.as_view(), name='login'),
+    url(r'^logout/$', user_view.LogoutView.as_view(), name='logout'),
+    url(r'^register/$', user_view.RegisterView.as_view(), name='register'),
 
     url(r'^category/$', category_view.CategoryView.as_view(), name='category'),
     url(r'^category/create/$', category_view.CategoryCreateView.as_view(), name='category_create'),
