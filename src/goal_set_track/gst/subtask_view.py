@@ -1,0 +1,52 @@
+from django.shortcuts import render, redirect
+from django.views.generic import View
+from django.http import HttpResponse as HTTPr
+from .models import *
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class SubTaskView(LoginRequiredMixin, View):
+    def get(self, req, category, task):
+        viewitems = {
+            'title': 'Sub Tareas',
+            'username': req.user.username,
+            'category': req.user.category_set.get(id=category),
+            'task': req.user.category_set.get(id=category).task_set.get(id=task),
+            'subtasks': req.user.category_set.get(id=category)
+                                                 .task_set.get(id=task).subtask_set.all()
+        }
+        return render(req, 'gst/subtask.html', viewitems)
+
+class SubTaskCreateView(LoginRequiredMixin, View):
+    def post(self, req, category, task):
+        name = req.POST['name']
+        description = req.POST.get('description', '')
+        deadline = None if req.POST.get('deadline', '') == '' else req.POST.get('deadline')
+        notify_user = True if req.POST.get('notify_user', False) else False
+        req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.create(name=name, description=description, deadline=deadline, notify_user=notify_user, complete=False)
+        return redirect('subtask', category=category, task=task)
+
+class SubTaskEditView(LoginRequiredMixin, View):
+    def post(self, req, category, task, subtask):
+        subtask = req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.get(pk=subtask)
+        subtask.name = req.POST.get('new_name', subtask.name)
+        subtask.description = req.POST.get('description', subtask.description)
+        subtask.deadline = req.POST.get('deadline', subtask.deadline)
+        subtask.notify_user = req.POST.get('notify_user', subtask.notify_user)
+        subtask.complete = bool(req.POST.get('complete', subtask.complete))
+        subtask.save()
+        return redirect('subtask', category=category, task=task)
+
+class SubTaskDeleteView(LoginRequiredMixin, View):
+    def get(self, req):
+        viewitems = {
+        }
+        subtasks = SubTask.objects.filter(user=req.user)
+        return render(req, 'gst/sub_task_delete.html', {'subtasks': subtasks})
+
+    def post(self, req):
+        n = req.POST['name']
+        SubTask.objects.filter(name=n).filter(user=req.user).delete()
+        return HTTPr('Successful deleted sub task.')
