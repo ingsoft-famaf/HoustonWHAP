@@ -37,13 +37,6 @@ class CategoryEditView(LoginRequiredMixin, View):
         return HTTPr('Successful edited the category')
 
 class CategoryDeleteView(LoginRequiredMixin, View):
-    def get(self, req):
-        viewitems = {
-        }
-        categorys = Category.objects.filter(user = u)
-        return render(req, 'gst/category_delete.html', {'categorys': categorys})
-
-    def post(self, req):
-        n = req.POST['name']
-        Category.objects.filter(name=n).filter(user=u).delete()
-        return HTTPr('Successful deleted category')
+    def post(self, req, category):
+        req.user.category_set.get(id=category).delete()
+        return redirect('category')

@@ -6,6 +6,11 @@
 <ul>
 {% for category in categories %}
   <li>
+    <form method='POST' action='{% url 'category_delete' category.id %}'>
+	{% csrf_token %}
+      <button type='submit' name='delete' value=True class='glyphicon glyphicon-remove'></button>
+    </form>
+
     <a href='{% url 'task' category.id %}'>{{ category.name }}</a>
   </li>
 {% endfor %}
