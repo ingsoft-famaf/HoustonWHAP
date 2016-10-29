@@ -26,8 +26,8 @@ urlpatterns = [
 
     url(r'^category/$', category.CategoryView.as_view(), name='category'),
     url(r'^category/create/$', category.CategoryCreateView.as_view(), name='category_create'),
-    url(r'^category/edit/$', category.CategoryEditView.as_view(), name='category_edit'),
-    url(r'^category/delete/$', category.CategoryDeleteView.as_view(), name='category_delete'),
+    url(r'^category/(?P<category>[\w]+)/edit/$', category.CategoryEditView.as_view(), name='category_edit'),
+    url(r'^category/(?P<category>[\w]+)/delete/$', category.CategoryDeleteView.as_view(), name='category_delete'),
 
     url(r'^category/(?P<category>[\w]+)/$', task.TaskView.as_view(), name='task'),
     url(r'^category/(?P<category>[\w]+)/task/create/$', task.TaskCreateView.as_view(), name='task_create'),
