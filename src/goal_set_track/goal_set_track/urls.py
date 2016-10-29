@@ -37,5 +37,5 @@ urlpatterns = [
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/$', subtask.SubTaskView.as_view(), name='subtask'),
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/create/$', subtask.SubTaskCreateView.as_view(), name='subtask_create'),
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/(?P<subtask>[\w]+)/edit/$', subtask.SubTaskEditView.as_view(), name='subtask_edit'),
-    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/delete/$', subtask.SubTaskDeleteView.as_view, name='subtask_delete'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/(?P<subtask>[\w]+)/delete/$', subtask.SubTaskDeleteView.as_view(), name='subtask_delete'),
 ]
