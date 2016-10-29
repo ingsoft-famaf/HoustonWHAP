@@ -15,27 +15,27 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from gst import user_view, task_view, subtask_view, category_view
+from gst.views import user, task, subtask, category
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', user_view.home, name='home'),
-    url(r'^login/$', user_view.LoginView.as_view(), name='login'),
-    url(r'^logout/$', user_view.LogoutView.as_view(), name='logout'),
-    url(r'^register/$', user_view.RegisterView.as_view(), name='register'),
+    url(r'^$', user.home, name='home'),
+    url(r'^login/$', user.LoginView.as_view(), name='login'),
+    url(r'^logout/$', user.LogoutView.as_view(), name='logout'),
+    url(r'^register/$', user.RegisterView.as_view(), name='register'),
 
-    url(r'^category/$', category_view.CategoryView.as_view(), name='category'),
-    url(r'^category/create/$', category_view.CategoryCreateView.as_view(), name='category_create'),
-    url(r'^category/edit/$', category_view.CategoryEditView.as_view(), name='category_edit'),
-    url(r'^category/delete/$', category_view.CategoryDeleteView.as_view(), name='category_delete'),
+    url(r'^category/$', category.CategoryView.as_view(), name='category'),
+    url(r'^category/create/$', category.CategoryCreateView.as_view(), name='category_create'),
+    url(r'^category/edit/$', category.CategoryEditView.as_view(), name='category_edit'),
+    url(r'^category/delete/$', category.CategoryDeleteView.as_view(), name='category_delete'),
 
-    url(r'^category/(?P<category>[\w]+)/$', task_view.TaskView.as_view(), name='task'),
-    url(r'^category/(?P<category>[\w]+)/task/create/$', task_view.TaskCreateView.as_view(), name='task_create'),
-    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/edit/$', task_view.TaskEditView.as_view(), name='task_edit'),
-    url(r'^category/(?P<category>[\w]+)/task/delete/$', task_view.TaskDeleteView.as_view, name='task_delete'),
+    url(r'^category/(?P<category>[\w]+)/$', task.TaskView.as_view(), name='task'),
+    url(r'^category/(?P<category>[\w]+)/task/create/$', task.TaskCreateView.as_view(), name='task_create'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/edit/$', task.TaskEditView.as_view(), name='task_edit'),
+    url(r'^category/(?P<category>[\w]+)/task/delete/$', task.TaskDeleteView.as_view, name='task_delete'),
 
-    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/$', subtask_view.SubTaskView.as_view(), name='subtask'),
-    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/create/$', subtask_view.SubTaskCreateView.as_view(), name='subtask_create'),
-    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/(?P<subtask>[\w]+)/edit/$', subtask_view.SubTaskEditView.as_view(), name='subtask_edit'),
-    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/delete/$', subtask_view.SubTaskDeleteView.as_view, name='subtask_delete'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/$', subtask.SubTaskView.as_view(), name='subtask'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/create/$', subtask.SubTaskCreateView.as_view(), name='subtask_create'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/(?P<subtask>[\w]+)/edit/$', subtask.SubTaskEditView.as_view(), name='subtask_edit'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/delete/$', subtask.SubTaskDeleteView.as_view, name='subtask_delete'),
 ]
