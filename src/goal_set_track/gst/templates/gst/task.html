@@ -6,23 +6,26 @@
 <h3>Tareas:</h3>
 <ul>
 {% for task in tasks %}
-  {% if task.complete %}
-    <li>
-      <form method='POST' action='{% url 'task_edit' category.id task.id %}'>
-	    {% csrf_token %}
-        <button type='submit' name='complete' value='' class='glyphicon glyphicon-remove'></button>
-      </form>
-      <a href='{% url 'subtask' category.id task.id %}'>{{ task.name }}</a>
-    </li>
-  {% else %}
-    <li>
-      <form method='POST' action='{% url 'task_edit' category.id task.id %}'>
-	    {% csrf_token %}
-        <button type='submit' name='complete' value=True class='glyphicon glyphicon-ok'></button>
-      </form>
-      <a href='{% url 'subtask' category.id task.id %}'>{{ task.name }}</a>
-    </li>
-  {% endif %}
+  <li>
+    <form method='POST' action='{% url 'task_delete' category.id task.id %}'>
+	{% csrf_token %}
+      <button type='submit' name='delete' value=True class='glyphicon glyphicon-remove'></button>
+    </form>
+
+    {% if task.complete %}
+    <form method='POST' action='{% url 'task_edit' category.id task.id %}'>
+	  {% csrf_token %}
+      <button type='submit' name='complete' value='' class='glyphicon glyphicon-unchecked'></button>
+    </form>
+    {% else %}
+    <form method='POST' action='{% url 'task_edit' category.id task.id %}'>
+	  {% csrf_token %}
+      <button type='submit' name='complete' value=True class='glyphicon glyphicon-check'></button>
+    </form>
+    {% endif %}
+
+    <a href='{% url 'subtask' category.id task.id %}'>{{ task.name }}</a>
+  </li>
 {% endfor %}
 </ul>
 
