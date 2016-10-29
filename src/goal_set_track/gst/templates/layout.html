@@ -2,12 +2,9 @@
 <html>
   <head>
     <title>GST {{ title }}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <style>
-      body {
-        margin-top: 50px;
-      }
-    </style>
+    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    {% load static %}
+    <link rel='stylesheet' href='{% static 'gst/base.css' %}'>
   </head>
   <body>
     {% include 'navbar.html' %}
