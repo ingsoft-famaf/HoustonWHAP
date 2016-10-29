@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^category/(?P<category>[\w]+)/$', task.TaskView.as_view(), name='task'),
     url(r'^category/(?P<category>[\w]+)/task/create/$', task.TaskCreateView.as_view(), name='task_create'),
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/edit/$', task.TaskEditView.as_view(), name='task_edit'),
-    url(r'^category/(?P<category>[\w]+)/task/delete/$', task.TaskDeleteView.as_view, name='task_delete'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/delete/$', task.TaskDeleteView.as_view(), name='task_delete'),
 
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/$', subtask.SubTaskView.as_view(), name='subtask'),
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/create/$', subtask.SubTaskCreateView.as_view(), name='subtask_create'),

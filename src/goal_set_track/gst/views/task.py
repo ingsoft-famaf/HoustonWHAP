@@ -40,12 +40,6 @@ class TaskEditView(LoginRequiredMixin, View):
         return redirect('task', category=category)
 
 class TaskDeleteView(LoginRequiredMixin, View):
-    def get(self, req):
-        viewitems = {
-        }
-        return render(req, 'task/task_delete.html', viewitems)
-
-    def post(self, req):
-        t = SubTask.objects.get(name=req.POST['name'])
-        t.delete()
-        return HTTPr('Deleted.')
+    def post(self, req, category, task):
+        req.user.category_set.get(id=category).task_set.get(id=task).delete()
+        return redirect('task', category=category)
