@@ -40,13 +40,6 @@ class SubTaskEditView(LoginRequiredMixin, View):
         return redirect('subtask', category=category, task=task)
 
 class SubTaskDeleteView(LoginRequiredMixin, View):
-    def get(self, req):
-        viewitems = {
-        }
-        subtasks = SubTask.objects.filter(user=req.user)
-        return render(req, 'gst/sub_task_delete.html', {'subtasks': subtasks})
-
-    def post(self, req):
-        n = req.POST['name']
-        SubTask.objects.filter(name=n).filter(user=req.user).delete()
-        return HTTPr('Successful deleted sub task.')
+    def post(self, req, category, task, subtask):
+        req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.get(id=subtask).delete()
+        return redirect('subtask', category=category, task= task)
