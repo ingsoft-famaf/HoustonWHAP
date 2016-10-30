@@ -1,20 +1,25 @@
 {% extends 'layout.html' %}
 
+{% block head %}
+  {% load static %}
+  <link rel='stylesheet' href='{% static 'gst/register.css' %}'>
+{% endblock %}
+
 {% block content %}
 <div class='container container-fluid'>
-  <h1 class="form-signin-heading">Welcome! Please register!</h1>
   <form action='{% url 'register' %}' method='POST' class='form-signin'>
+    <h2 class="form-signin-heading">Please register!</h2>
     {% csrf_token %}
     <label for="inputFirstName" class="sr-only">First Name</label>
-    <input id="inputFirstName" name="first_name" placeholder="First name" required type='text' class="form-control"/><br>
+    <input id="inputFirstName" name="first_name" placeholder="First name" required autofocus type='text' class="form-control"/>
     <label for="inputLastName" class="sr-only">Last Name</label>
-    <input id="inputLastName" name="last_name" placeholder="Last name" required type='text' class="form-control"/><br>
+    <input id="inputLastName" name="last_name" placeholder="Last name" required type='text' class="form-control"/>
     <label for="inputUsername" class="sr-only">Username</label>
-    <input id="inputUsername" name="username" placeholder="Username" required type='text' class="form-control"/><br>
+    <input id="inputUsername" name="username" placeholder="Username" required type='text' class="form-control"/>
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input id="inputEmail" name="email" placeholder="Email address" required type='email' class="form-control"/><br>
+    <input id="inputEmail" name="email" placeholder="Email address" required type='email' class="form-control"/>
     <label for="inputPassword" class="sr-only">Password</label>
-    <input id="inputPassword" name="password" placeholder="Password" required="" type='password' class="form-control"/><br>
+    <input id="inputPassword" name="password" placeholder="Password" required="" type='password' class="form-control"/>
     <button type="submit" class="btn btn-lg btn-default btn-block">Register</button>
   </form>
 </div>
