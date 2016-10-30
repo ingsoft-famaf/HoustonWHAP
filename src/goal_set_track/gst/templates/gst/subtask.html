@@ -9,9 +9,16 @@
 <ul>
 {% for subtask in subtasks %}
   <li>
-    <form method='POST' action='{% url 'subtask_delete' category.id task.id subtask.id %}'>
+
+	<form method='POST' action='{% url 'subtask_delete' category.id task.id subtask.id %}'>
 	{% csrf_token %}
       <button type='submit' name='delete' value=True class='glyphicon glyphicon-remove'></button>
+    </form>
+
+	 <!-- button edit -->	
+    <form method='GET' action='{% url 'subtask_edit' category.id task.id subtask.id %}'>
+	{% csrf_token %}
+      <button type='submit' name='edit' value=True class='glyphicon glyphicon-edit'></button>
     </form>
 
     {% if subtask.complete %}
