@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class='container container-fluid'>
+  <h2> {{ user.first_name }}</h2>
+  <h4>Usted esta junto con nosotros desde: {{ user.date_joined}}</h4>
+  <h3>Informacion del Perfil<h3>
+  <h4 style="font-family:verdana;"> Nombre de Usuario: {{user.username}}</h4>
+  <h4 style="font-family:verdana;">Email: {{user.email}}</h4>
+  <h4 style="font-family:verdana;">Nombre: {{user.first_name}}</h4>
+  <h4 style="font-family:verdana;">Apellido: {{user.last_name}}</h4> 
+
+  <!-- button edit -->	
+  <h4>Editar informacion del usuario:</h4>
+      <form method='GET' action='{% url 'me_edit' %}'>
+  	{% csrf_token %}
+        <button type='submit' name='edit' value=True class='glyphicon glyphicon-edit'></button>
+      </form>
+</div>
+{% endblock %}

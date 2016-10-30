@@ -72,3 +72,45 @@ class AboutView(View):
             'username': req.user.username if req.user.username else None
         }
         return render(req, 'gst/about.html', viewitems)
+
+class UserInfoView(View):
+    def get(self, req):
+        viewitems = {
+            'title': 'Profile Information',
+            'username': req.user.username if req.user.username else None
+
+        }
+        return render(req, 'gst/me.html', viewitems)
+
+class UserInfoView(LoginRequiredMixin, View):
+    def get(self, req):
+        viewitems = {
+            'title': 'Profile Information',
+            'username': req.user.username,
+            'email': req.user.email,
+            'first_name': req.user.first_name,
+            'last_name': req.user.last_name,
+            'password': req.user.password,
+            'date_joined': req.user.date_joined
+        }
+        return render(req, 'gst/me.html', viewitems)
+
+class UserInfoEditView(LoginRequiredMixin, View):
+    def get(self, req):
+        viewitems = {
+            'title': 'Edit Profile Information',
+            'username': req.user.username,
+            'email': req.user.email,
+            'first_name': req.user.first_name,
+            'last_name': req.user.last_name,
+            'password': req.user.password,
+            'date_joined': req.user.date_joined
+        }
+        return render(req, 'gst/me_edit.html', viewitems)
+
+    def post(self, req):
+        user.first_name = req.POST['first_name']
+        user.last_name = req.POST['last_name.get']
+        user.password = req.POST['password']
+        user.save()
+        return redirect('me')
