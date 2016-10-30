@@ -29,12 +29,23 @@ class SubTaskCreateView(LoginRequiredMixin, View):
         return redirect('subtask', category=category, task=task)
 
 class SubTaskEditView(LoginRequiredMixin, View):
+    def get(self, req, category, task, subtask):
+        viewitems = {
+            'title': 'Editar Subtarea',
+            'username': req.user.username,
+            'category': req.user.category_set.get(id=category),
+            'task': req.user.category_set.get(id=category).task_set.get(id=task),
+            'subtask': req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.get(id=subtask)
+        }
+        return render(req, 'gst/subtask_edit.html', viewitems)
+
     def post(self, req, category, task, subtask):
-        subtask = req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.get(pk=subtask)
+
+        subtask = req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.get(id=subtask)
         subtask.name = req.POST.get('new_name', subtask.name)
-        subtask.description = req.POST.get('description', subtask.description)
-        subtask.deadline = req.POST.get('deadline', subtask.deadline)
-        subtask.notify_user = req.POST.get('notify_user', subtask.notify_user)
+        subtask.description = req.POST.get('new_description', subtask.description)
+        subtask.deadline = req.POST.get('new_deadline', subtask.deadline)
+        subtask.notify_user = bool(req.POST.get('new_notify_user', subtask.notify_user))
         subtask.complete = bool(req.POST.get('complete', subtask.complete))
         subtask.save()
         return redirect('subtask', category=category, task=task)
