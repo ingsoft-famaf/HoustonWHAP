@@ -73,14 +73,6 @@ class AboutView(View):
         }
         return render(req, 'gst/about.html', viewitems)
 
-class UserInfoView(View):
-    def get(self, req):
-        viewitems = {
-            'title': 'Profile Information',
-            'username': req.user.username if req.user.username else None
-
-        }
-        return render(req, 'gst/me.html', viewitems)
 
 class UserInfoView(LoginRequiredMixin, View):
     def get(self, req):
