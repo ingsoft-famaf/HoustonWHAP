@@ -58,6 +58,10 @@ class RegisterView(View):
         new_user.first_name = first_name
         new_user.last_name = last_name
         new_user.save()
+
+        # New users always have a default 'Goals' category.
+        new_user.category_set.create(name='Goals')
+        
         login(req, new_user)
         return redirect('category')
 

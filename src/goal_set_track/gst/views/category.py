@@ -38,5 +38,7 @@ class CategoryEditView(LoginRequiredMixin, View):
 
 class CategoryDeleteView(LoginRequiredMixin, View):
     def post(self, req, category):
-        req.user.category_set.get(id=category).delete()
+        # Never delete default category.
+        if req.user.category_set.get(id=category).name != 'Goals':
+            req.user.category_set.get(id=category).delete()
         return redirect('category')
