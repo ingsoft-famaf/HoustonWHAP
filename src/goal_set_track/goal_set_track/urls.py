@@ -20,6 +20,7 @@ from gst.views import user, task, subtask, category
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', user.home, name='home'),
+    url(r'^about/$', user.AboutView.as_view(), name='about'),
     url(r'^login/$', user.LoginView.as_view(), name='login'),
     url(r'^logout/$', user.LogoutView.as_view(), name='logout'),
     url(r'^register/$', user.RegisterView.as_view(), name='register'),

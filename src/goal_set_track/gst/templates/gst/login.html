@@ -1,14 +1,19 @@
 {% extends 'layout.html' %}
 
+{% block head %}
+  {% load static %}
+  <link rel='stylesheet' href='{% static 'gst/login.css' %}'>
+{% endblock %}
+
 {% block content %}
 <div class='container container-fluid'>
-  <h2 class="form-signin-heading">Please log in</h2>
   <form action='{% url 'login' %}' method='POST' class="form-signin">
+    <h2 class="form-signin-heading">Please log in</h2>
     {% csrf_token %}
     <label for="inputUsername" class="sr-only">Username</label>
-    <input id="inputUsername" name="username" placeholder="Username" required type="text" class="form-control"/><br>
+    <input id="inputUsername" name="username" placeholder="Username" required autofocus type="text" class="form-control"/>
     <label for="inputPassword" class="sr-only">Password</label>
-    <input id="inputPassword" name="password" placeholder="Password" required type="password" class="form-control"/><br>
+    <input id="inputPassword" name="password" placeholder="Password" required type="password" class="form-control"/>
     <button type="submit" class="btn btn-lg btn-default btn-block">Login</button>
   </form>
 </div>

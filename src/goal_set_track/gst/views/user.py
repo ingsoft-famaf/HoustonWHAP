@@ -44,6 +44,7 @@ class LogoutView(LoginRequiredMixin, View):
 class RegisterView(View):
     def get(self, req):
         viewitems = {
+            'title': 'Register',
         }
         return render(req, 'gst/register.html', viewitems)
 
@@ -57,4 +58,13 @@ class RegisterView(View):
         new_user.first_name = first_name
         new_user.last_name = last_name
         new_user.save()
-        return HTTPr('Bienvenido ' + new_user.first_name + '. Esperamos que disfrutes del servicio.')
+        login(req, new_user)
+        return redirect('category')
+
+class AboutView(View):
+    def get(self, req):
+        viewitems = {
+            'title': 'About',
+            'username': req.user.username if req.user.username else None
+        }
+        return render(req, 'gst/about.html', viewitems)
