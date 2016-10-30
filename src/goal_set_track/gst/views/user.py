@@ -86,12 +86,12 @@ class UserInfoView(LoginRequiredMixin, View):
     def get(self, req):
         viewitems = {
             'title': 'Profile Information',
-            'username': req.user.username,
-            'email': req.user.email,
-            'first_name': req.user.first_name,
-            'last_name': req.user.last_name,
-            'password': req.user.password,
-            'date_joined': req.user.date_joined
+            'username': req.user.username if req.user.username else None,
+            'email': req.user.email if req.user.username else None,
+            'first_name': req.user.first_name if req.user.username else None,
+            'last_name': req.user.last_name if req.user.username else None,
+            'password': req.user.password if req.user.username else None,
+            'date_joined': req.user.date_joined if req.user.username else None
         }
         return render(req, 'gst/me.html', viewitems)
 
