@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.dateparse import parse_datetime
+from django.utils import timezone
 
 class SubTaskView(LoginRequiredMixin, View):
     def get(self, req, category, task):
@@ -15,17 +17,23 @@ class SubTaskView(LoginRequiredMixin, View):
             'category': req.user.category_set.get(id=category),
             'task': req.user.category_set.get(id=category).task_set.get(id=task),
             'subtasks': req.user.category_set.get(id=category)
-                                                 .task_set.get(id=task).subtask_set.all()
+                            .task_set.get(id=task).subtask_set.all()
         }
         return render(req, 'gst/subtask.html', viewitems)
 
 class SubTaskCreateView(LoginRequiredMixin, View):
     def post(self, req, category, task):
-        name = req.POST['name']
-        description = req.POST.get('description', '')
-        deadline = None if req.POST.get('deadline', '') == '' else req.POST.get('deadline')
-        notify_user = True if req.POST.get('notify_user', False) else False
-        req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.create(name=name, description=description, deadline=deadline, notify_user=notify_user, complete=False)
+        t = req.user.category_set.get(id=category).task_set.get(id=task)
+        data = _subtask_data_from_POST(req.POST)
+        data = _validate_subtask_deadline(t, data)
+
+        print data
+        t.subtask_set.create(name=data['name'],
+                             description=data['description'],
+                             deadline=data['deadline'],
+                             notify_user=data['notify_user'],
+                             complete=False)
+
         return redirect('subtask', category=category, task=task)
 
 class SubTaskEditView(LoginRequiredMixin, View):
@@ -40,17 +48,63 @@ class SubTaskEditView(LoginRequiredMixin, View):
         return render(req, 'gst/subtask_edit.html', viewitems)
 
     def post(self, req, category, task, subtask):
+        task = req.user.category_set.get(id=category).task_set.get(id=task)
+        data = _subtask_data_from_POST(req.POST)
+        data = _validate_subtask_deadline(task, data)
+        
+        subtask = task.subtask_set.get(id=subtask)
 
-        subtask = req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.get(id=subtask)
-        subtask.name = req.POST.get('new_name', subtask.name)
-        subtask.description = req.POST.get('new_description', subtask.description)
-        subtask.deadline = req.POST.get('new_deadline', subtask.deadline)
-        subtask.notify_user = bool(req.POST.get('new_notify_user', subtask.notify_user))
-        subtask.complete = bool(req.POST.get('complete', subtask.complete))
+        subtask.name = data['name']
+        subtask.description = data['description']
+        subtask.deadline = data['deadline']
+        subtask.notify_user = data['notify_user']
+        subtask.complete = data['complete']
+
         subtask.save()
+
         return redirect('subtask', category=category, task=task)
 
 class SubTaskDeleteView(LoginRequiredMixin, View):
     def post(self, req, category, task, subtask):
         req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.get(id=subtask).delete()
         return redirect('subtask', category=category, task= task)
+
+def _subtask_data_from_POST(post):
+    result = {
+        'name': post.get('name', ''),
+        'description': post.get('description', ''),
+        'notify_user': True if post.get('notify_user', False) else False,
+        'deadline': None if post.get('deadline', None) == '' else post.get('deadline'),
+        'complete': True if post.get('complete', False) else False
+    }
+    
+    # Check semantics
+    if result['notify_user'] and (result['deadline'] is not None):
+        try:
+            result['deadline'] = parse_datetime(result['deadline'])
+            if result['deadline'] is not None:
+                result['deadline'] = timezone.make_aware(result['deadline'])
+            else:
+                result['notify_user'] = False
+        except ValueError:
+            result['notify_user'] = False
+            result['deadline'] = None
+    else:
+        result['notify_user'] = False
+        result['deadline'] = None
+
+    return result
+
+def _validate_subtask_deadline(task, subtask):
+    print task.deadline
+    print 'jajaja\n'
+    print subtask['deadline']
+    if subtask['notify_user'] and (
+        subtask['deadline'] < timezone.now() or
+        subtask['deadline'] > task.deadline):
+        print 'Datetime from subtask is invalid.'
+        subtask['notify_user'] = False
+        subtask['deadline'] = None
+
+    print subtask
+    return subtask
