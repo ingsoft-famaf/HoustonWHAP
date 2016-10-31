@@ -45,20 +45,14 @@ class SubTaskEditView(LoginRequiredMixin, View):
         return render(req, 'gst/subtask_edit.html', viewitems)
 
     def post(self, req, category, task, subtask):
-        task = req.user.category_set.get(id=category).task_set.get(id=task)
-        data = _subtask_data_from_POST(req.POST)
-        data = _validate_subtask_deadline(task, data)
 
-        subtask = task.subtask_set.get(id=subtask)
-
-        subtask.name = data['name']
-        subtask.description = data['description']
-        subtask.deadline = data['deadline']
-        subtask.notify_user = data['notify_user']
-        subtask.complete = data['complete']
-
+        subtask = req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.get(id=subtask)
+        subtask.name = req.POST.get('new_name', subtask.name)
+        subtask.description = req.POST.get('new_description', subtask.description)
+        subtask.deadline = req.POST.get('new_deadline', subtask.deadline)
+        subtask.notify_user = bool(req.POST.get('new_notify_user', subtask.notify_user))
+        subtask.complete = bool(req.POST.get('complete', subtask.complete))
         subtask.save()
-
         return redirect('subtask', category=category, task=task)
 
 class SubTaskDeleteView(LoginRequiredMixin, View):
