@@ -13,11 +13,12 @@
     </form>
     {% endif %}
 
-    <!-- button edit -->
-     <form method='GET' action='{% url 'category_edit' category.id %}'>
-   {% csrf_token %}
-       <button type='submit' name='edit' value=True class='glyphicon glyphicon-edit'></button>
-     </form>
+    {% if category.name != 'Goals' %}
+    <form method='POST' action='{% url 'category_edit' category.id %}'>
+	{% csrf_token %}
+      <button type='submit' name='edit' value=True class='glyphicon glyphicon-edit'></button>
+    </form>
+    {% endif %}
 
     <a href='{% url 'task' category.id %}'>{{ category.name }}</a>
   </li>
