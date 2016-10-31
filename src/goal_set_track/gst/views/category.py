@@ -22,19 +22,22 @@ class CategoryCreateView(LoginRequiredMixin, View):
         return redirect('task', category=req.user.category_set.get(name=name).id)
 
 class CategoryEditView(LoginRequiredMixin, View):
-    def get(self, req):
+    def get(self, req, category):
         viewitems = {
-            'categorys': categorys,
-            'edit':True
+            'title': 'Category Edit',
+            'username': req.user.username,
+            'category': req.user.category_set.get(id=category)
         }
-        categorys = Category.objects.filter(user = u)
-        return render(req, 'gst/category_delete.html', viewitems)
+        return render(req, 'gst/category_edit.html', viewitems)
 
-    def post(self, req):
-        oldName = req.POST['oldName']
-        newName = req.POST['newName']
-        Category.objects.filter(name=oldName).filter(user=u).update(name=newName)
-        return HTTPr('Successful edited the category')
+    def post(self, req, category):
+        data = {
+            'name': req.POST.get('new_name', ''),
+        }
+        category = req.user.category_set.get(id=category)
+        category.name = data['name']
+        category.save()
+        return redirect('category')
 
 class CategoryDeleteView(LoginRequiredMixin, View):
     def post(self, req, category):
