@@ -1,10 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from django.http import HttpResponse as HTTPr
 from ..models import *
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.dateparse import parse_datetime
 from django.utils import timezone
@@ -63,7 +60,7 @@ def _task_data_from_POST(post):
         'deadline': None if post.get('deadline', None) == '' else post.get('deadline'),
         'complete': True if post.get('complete', False) else False
     }
-    
+
     # Check semantics
     if result['notify_user'] and (result['deadline'] is not None):
         try:

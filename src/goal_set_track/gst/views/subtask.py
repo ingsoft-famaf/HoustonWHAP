@@ -1,10 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from django.http import HttpResponse as HTTPr
 from ..models import *
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.dateparse import parse_datetime
 from django.utils import timezone
@@ -51,7 +48,7 @@ class SubTaskEditView(LoginRequiredMixin, View):
         task = req.user.category_set.get(id=category).task_set.get(id=task)
         data = _subtask_data_from_POST(req.POST)
         data = _validate_subtask_deadline(task, data)
-        
+
         subtask = task.subtask_set.get(id=subtask)
 
         subtask.name = data['name']
@@ -67,7 +64,7 @@ class SubTaskEditView(LoginRequiredMixin, View):
 class SubTaskDeleteView(LoginRequiredMixin, View):
     def post(self, req, category, task, subtask):
         req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.get(id=subtask).delete()
-        return redirect('subtask', category=category, task= task)
+        return redirect('subtask', category=category, task=task)
 
 def _subtask_data_from_POST(post):
     result = {
@@ -77,7 +74,7 @@ def _subtask_data_from_POST(post):
         'deadline': None if post.get('deadline', None) == '' else post.get('deadline'),
         'complete': True if post.get('complete', False) else False
     }
-    
+
     # Check semantics
     if result['notify_user'] and (result['deadline'] is not None):
         try:

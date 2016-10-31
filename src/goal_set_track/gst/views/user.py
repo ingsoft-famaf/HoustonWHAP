@@ -61,7 +61,7 @@ class RegisterView(View):
 
         # New users always have a default 'Goals' category.
         new_user.category_set.create(name='Goals')
-        
+
         login(req, new_user)
         return redirect('category')
 
