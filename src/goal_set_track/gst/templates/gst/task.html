@@ -12,6 +12,12 @@
       <button type='submit' name='delete' value=True class='glyphicon glyphicon-remove'></button>
     </form>
 
+    <!-- button edit -->
+     <form method='GET' action='{% url 'task_edit' category.id task.id %}'>
+   {% csrf_token %}
+       <button type='submit' name='edit' value=True class='glyphicon glyphicon-edit'></button>
+     </form>
+
     {% if task.complete %}
     <form method='POST' action='{% url 'task_edit' category.id task.id %}'>
 	  {% csrf_token %}

@@ -31,6 +31,15 @@ class TaskCreateView(LoginRequiredMixin, View):
         return redirect('task', category=category)
 
 class TaskEditView(LoginRequiredMixin, View):
+    def get(self, req, category, task):
+        viewitems = {
+            'title': 'Task Edit',
+            'username': req.user.username,
+            'category': req.user.category_set.get(id=category),
+            'task': req.user.category_set.get(id=category).task_set.get(id=task)
+        }
+        return render(req, 'gst/task_edit.html', viewitems)
+
     def post(self, req, category, task):
         data = _task_data_from_POST(req.POST)
         data = _validate_task_deadline(data)

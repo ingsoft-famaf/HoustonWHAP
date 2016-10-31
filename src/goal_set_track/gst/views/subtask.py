@@ -49,7 +49,7 @@ class SubTaskEditView(LoginRequiredMixin, View):
         data = _subtask_data_from_POST(req.POST)
         data = _validate_subtask_deadline(task, data)
 
-        subtask = task.subtask_set.get(id=subtask)
+        subtask = req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.get(id=subtask)
 
         subtask.name = data['name']
         subtask.description = data['description']
@@ -57,6 +57,7 @@ class SubTaskEditView(LoginRequiredMixin, View):
         subtask.notify_user = data['notify_user']
         subtask.complete = data['complete']
 
+        print data
         subtask.save()
 
         return redirect('subtask', category=category, task=task)
@@ -93,8 +94,6 @@ def _subtask_data_from_POST(post):
     return result
 
 def _validate_subtask_deadline(task, subtask):
-    print task.deadline
-    print 'jajaja\n'
     print subtask['deadline']
     if subtask['notify_user'] and (
         subtask['deadline'] < timezone.now() or
