@@ -87,8 +87,6 @@ def _subtask_data_from_POST(post):
     return result
 
 def _validate_subtask_deadline(task, subtask):
-    print task.deadline
-    print 'jajaja\n'
     print subtask['deadline']
     if subtask['notify_user'] and (
         subtask['deadline'] < timezone.now() or

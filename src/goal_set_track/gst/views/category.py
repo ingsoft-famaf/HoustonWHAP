@@ -35,6 +35,8 @@ class CategoryEditView(LoginRequiredMixin, View):
             'name': req.POST.get('new_name', ''),
         }
         category = req.user.category_set.get(id=category)
+        if category.name == 'Goals':
+            return HTTPr('You can not edit the main category.')
         category.name = data['name']
         category.save()
         return redirect('category')
