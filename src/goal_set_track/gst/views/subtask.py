@@ -49,7 +49,8 @@ class SubTaskEditView(LoginRequiredMixin, View):
 
         subtask.name = req.POST.get('new_name', subtask.name)
         subtask.description = req.POST.get('new_description', subtask.description)
-        subtask.deadline = req.POST.get('new_deadline', subtask.deadline)
+        if req.POST['new_deadline'] != "":
+        	subtask.deadline = req.POST['new_deadline']
         subtask.notify_user = bool(req.POST.get('new_notify_user', subtask.notify_user))
         subtask.complete = bool(req.POST.get('complete', subtask.complete))
 
