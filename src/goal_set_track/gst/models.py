@@ -40,7 +40,6 @@ class SubTask(models.Model):
 
 class Comment(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    id = models.AutoField(primary_key=True)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
