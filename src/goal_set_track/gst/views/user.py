@@ -74,35 +74,30 @@ class AboutView(View):
         return render(req, 'gst/about.html', viewitems)
 
 
-class UserInfoView(LoginRequiredMixin, View):
+class UserView(LoginRequiredMixin, View):
     def get(self, req):
         viewitems = {
             'title': 'Profile Information',
-            'username': req.user.username if req.user.username else None,
-            'email': req.user.email if req.user.username else None,
-            'first_name': req.user.first_name if req.user.username else None,
-            'last_name': req.user.last_name if req.user.username else None,
-            'password': req.user.password if req.user.username else None,
-            'date_joined': req.user.date_joined if req.user.username else None
+            'username': req.user.username,
+            'user': req.user
         }
-        return render(req, 'gst/me.html', viewitems)
+        return render(req, 'gst/user.html', viewitems)
 
-class UserInfoEditView(LoginRequiredMixin, View):
+class UserEditView(LoginRequiredMixin, View):
     def get(self, req):
         viewitems = {
             'title': 'Edit Profile Information',
             'username': req.user.username,
-            'email': req.user.email,
-            'first_name': req.user.first_name,
-            'last_name': req.user.last_name,
-            'password': req.user.password,
-            'date_joined': req.user.date_joined
+            'user': req.user
         }
-        return render(req, 'gst/me_edit.html', viewitems)
+        return render(req, 'gst/user_edit.html', viewitems)
 
     def post(self, req):
-        user.first_name = req.POST['first_name']
-        user.last_name = req.POST['last_name.get']
-        user.password = req.POST['password']
-        user.save()
-        return redirect('me')
+        if req.POST.get('first_name'):
+            req.user.first_name = req.POST.get('first_name')
+        if req.POST.get('last_name'):
+            req.user.last_name = req.POST.get('last_name')
+        if req.POST.get('password'):
+            req.user.set_password(req.POST['password'])
+        req.user.save()
+        return redirect('user')

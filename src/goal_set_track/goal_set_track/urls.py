@@ -24,8 +24,8 @@ urlpatterns = [
     url(r'^login/$', user.LoginView.as_view(), name='login'),
     url(r'^logout/$', user.LogoutView.as_view(), name='logout'),
     url(r'^register/$', user.RegisterView.as_view(), name='register'),
-    url(r'^me/$', user.UserInfoView.as_view(), name='me'),
-    url(r'^me_edit/$', user.UserInfoEditView.as_view(), name='me_edit'),
+    url(r'^me/$', user.UserView.as_view(), name='user'),
+    url(r'^me/edit/$', user.UserEditView.as_view(), name='user_edit'),
 
     url(r'^category/$', category.CategoryView.as_view(), name='category'),
     url(r'^category/create/$', category.CategoryCreateView.as_view(), name='category_create'),

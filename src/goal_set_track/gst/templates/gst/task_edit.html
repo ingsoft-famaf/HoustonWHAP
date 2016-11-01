@@ -8,10 +8,10 @@
   <form method='POST' class="form-signin" action='{% url 'task_edit' category.id task.id %}'>
 	{% csrf_token %}
 	  <p>name = {{ task.name }} </p>
-	  Nombre: <input name="new_name" placeholder="{{ task.name }}" type='text'/><br>
+	  Nombre: <input name="name" value='{{ task.name }}' type='text'/><br>
 	  <p>description = {{ task.description }} </p>
-	  Editar descripción: <input name="new_description" placeholder="{{ task.description }}" type='text'/><br>
-	  Editar fecha de vencimiento: <input name="new_deadline" placeholder="{{ task.deadline }}" type='datetime-local'/><br>
+	  Editar descripción: <input name="description" value="{{ task.description }}" type='text'/><br>
+	  Editar fecha de vencimiento: <input name="deadline" placeholder="{{ task.deadline }}" type='datetime-local'/><br>
 
       <button type="submit" class="btn btn-lg btn-default btn-block">Editar</button>
   </form>

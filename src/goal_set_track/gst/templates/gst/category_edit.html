@@ -8,7 +8,7 @@
   <form method='POST' class="form-signin" action='{% url 'category_edit' category.id %}'>
 	{% csrf_token %}
 	  <p>name = {{ category.name }} </p>
-	  Nombre: <input name="new_name" placeholder="{{ category.name }}" type='text'/><br>
+	  Nombre: <input name="new_name" value="{{ category.name }}" type='text'/><br>
 
       <button type="submit" class="btn btn-lg btn-default btn-block">Editar</button>
   </form>

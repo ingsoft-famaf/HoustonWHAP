@@ -12,16 +12,15 @@
       <button type='submit' name='delete' value=True class='glyphicon glyphicon-remove'></button>
     </form>
 
-    <!-- button edit -->
-     <form method='GET' action='{% url 'task_edit' category.id task.id %}'>
-   {% csrf_token %}
-       <button type='submit' name='edit' value=True class='glyphicon glyphicon-edit'></button>
-     </form>
+     <a href='{% url 'task_edit' category.id task.id %}'>
+       <span class='glyphicon glyphicon-edit'></span>
+       Editar
+     </a>
 
     {% if task.complete %}
     <form method='POST' action='{% url 'task_edit' category.id task.id %}'>
 	  {% csrf_token %}
-      <button type='submit' name='complete' value='' class='glyphicon glyphicon-unchecked'></button>
+      <button type='submit' name='complete' class='glyphicon glyphicon-unchecked'></button>
     </form>
     {% else %}
     <form method='POST' action='{% url 'task_edit' category.id task.id %}'>

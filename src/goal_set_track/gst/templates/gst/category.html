@@ -11,13 +11,10 @@
 	{% csrf_token %}
       <button type='submit' name='delete' value=True class='glyphicon glyphicon-remove'></button>
     </form>
-    {% endif %}
-
-    {% if category.name != 'Goals' %}
-    <form method='POST' action='{% url 'category_edit' category.id %}'>
-	{% csrf_token %}
-      <button type='submit' name='edit' value=True class='glyphicon glyphicon-edit'></button>
-    </form>
+    <a href='{% url 'category_edit' category.id %}'>
+      <span class='glyphicon glyphicon-edit'></span>
+    </a>
+    <br>
     {% endif %}
 
     <a href='{% url 'task' category.id %}'>{{ category.name }}</a>
