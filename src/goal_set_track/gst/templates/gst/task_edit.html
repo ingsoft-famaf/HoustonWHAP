@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h2>{{ title }}</h2>
+<h2>{{ title }}: {{task.name}}</h2>
 
 <div class='container container-fluid'>
   <form method='POST' class="form-signin" action='{% url 'task_edit' category.id task.id %}'>

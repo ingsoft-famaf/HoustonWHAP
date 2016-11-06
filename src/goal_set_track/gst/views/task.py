@@ -36,7 +36,7 @@ class TaskCreateView(LoginRequiredMixin, View):
 class TaskEditView(LoginRequiredMixin, View):
     def get(self, req, category, task):
         viewitems = {
-            'title': 'Editar Subtarea',
+            'title': 'Editar Tarea',
             'username': req.user.username,
             'category': req.user.category_set.get(id=category),
             'task': req.user.category_set.get(id=category).task_set.get(id=task),
