@@ -10,10 +10,14 @@
   <h4 style="font-family:verdana;">Nombre: {{user.first_name}}</h4>
   <h4 style="font-family:verdana;">Apellido: {{user.last_name}}</h4> 
 
-  <!-- button edit -->	
-  <h4>Editar informacion del usuario:</h4>
-    <a href='{% url 'user_edit' %}'>
-        <span class='glyphicon glyphicon-edit'></span>
-    </a>
+  <!-- button edit -->  
+  <form style="display: inline;" method='GET' action='{% url 'user_edit'%}'>
+  <h4>Editar informacion del usuario
+
+    {% csrf_token %}
+    <button type='submit' name='edit' value=True class='glyphicon glyphicon-edit'></button>
+  </h4>
+  </form>    
+
 </div>
 {% endblock %}
