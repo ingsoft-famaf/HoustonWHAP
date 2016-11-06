@@ -13,7 +13,7 @@
 	<form method='POST' action='{% url 'subtask_delete' category.id task.id subtask.id %}'>
 	{% csrf_token %}
       <button type='submit' name='delete' value=True class='glyphicon glyphicon-remove'></button>
-    </form>
+  </form>
 
 	 <!-- button edit -->	
     <form method='GET' action='{% url 'subtask_edit' category.id task.id subtask.id %}'>
@@ -48,6 +48,30 @@
 	  Notificarme: <input name="notify_user" type='checkbox'/><br>
       <button type="submit" class="btn btn-lg btn-default btn-block">Agregar</button>
   </form>
+
+  <form method='POST' action='{% url 'comment_create' category.id task.id %}'>
+  {% csrf_token %}
+  <input name="text" placeholder="Crear comentario" required type='text'/><br>
+      <button type="submit" class="btn btn-lg btn-default btn-block">Agregar</button>
+  </form
+
+<ul>
+{% for comment in comments %}
+  <li>
+    <p>{{ comment.text }}
+    <form method='GET' action='{% url 'comment_edit' category.id task.id comment.id %}'>
+  {% csrf_token %}
+      <button type='submit' name='edit' value=True class='glyphicon glyphicon-edit'></button>
+    </form>
+    <form method='POST' action='{% url 'comment_delete' category.id task.id comment.id %}'>
+      {% csrf_token %}
+      <button type='submit' name='delete' class='glyphicon glyphicon-remove'></button>
+    </form>
+    </p>
+
+  </li>
+{% endfor %}
+</ul>
 </div>
 
 {% endblock %}
