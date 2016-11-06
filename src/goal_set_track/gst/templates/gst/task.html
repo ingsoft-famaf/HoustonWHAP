@@ -7,23 +7,23 @@
 <ul>
 {% for task in tasks %}
   <li>
-    <form method='POST' action='{% url 'task_delete' category.id task.id %}'>
+    <form style="display: inline;" method='POST' action='{% url 'task_delete' category.id task.id %}'>
 	{% csrf_token %}
       <button type='submit' name='delete' value=True class='glyphicon glyphicon-remove'></button>
     </form>
 
-     <a href='{% url 'task_edit' category.id task.id %}'>
-       <span class='glyphicon glyphicon-edit'></span>
-       Editar
-     </a>
+    <form style="display: inline;" method='GET' action='{% url 'task_edit' category.id task.id %}'>
+      {% csrf_token %}
+      <button type='submit' name='edit' value=True class='glyphicon glyphicon-edit'></button>
+    </form>
 
     {% if task.complete %}
-    <form method='POST' action='{% url 'task_edit' category.id task.id %}'>
+    <form style="display: inline;" method='POST' action='{% url 'task_edit' category.id task.id %}'>
 	  {% csrf_token %}
       <button type='submit' name='complete' class='glyphicon glyphicon-unchecked'></button>
     </form>
     {% else %}
-    <form method='POST' action='{% url 'task_edit' category.id task.id %}'>
+    <form style="display: inline;" method='POST' action='{% url 'task_edit' category.id task.id %}'>
 	  {% csrf_token %}
       <button type='submit' name='complete' value=True class='glyphicon glyphicon-check'></button>
     </form>
