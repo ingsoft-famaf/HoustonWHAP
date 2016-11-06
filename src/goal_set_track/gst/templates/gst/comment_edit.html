@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h2>{{ title }}</h2>
+
+<div class='container container-fluid'>
+  <form method='POST' class="form-signin" action='{% url 'comment_edit' category.id task.id comment.id %}'>
+	{% csrf_token %}
+	  <p>name = {{ subtask.name }} </p>
+	  <input name="new_name" placeholder="{{ comment.text }}" type='text'/><br>
+      <button type="submit" class="btn btn-lg btn-default btn-block">Editar</button>
+  </form>
+</div>
+
+{% endblock %}

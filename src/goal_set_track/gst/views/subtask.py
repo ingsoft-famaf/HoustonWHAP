@@ -14,7 +14,9 @@ class SubTaskView(LoginRequiredMixin, View):
             'category': req.user.category_set.get(id=category),
             'task': req.user.category_set.get(id=category).task_set.get(id=task),
             'subtasks': req.user.category_set.get(id=category)
-                            .task_set.get(id=task).subtask_set.all()
+                            .task_set.get(id=task).subtask_set.all(),
+            'comments': req.user.category_set.get(id=category)
+                            .task_set.get(id=task).comment_set.all(),
         }
         return render(req, 'gst/subtask.html', viewitems)
 
