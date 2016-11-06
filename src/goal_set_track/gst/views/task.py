@@ -5,12 +5,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.dateparse import parse_datetime
 from django.utils import timezone
+from deadline import number_deadlines_from_user
 
 class TaskView(LoginRequiredMixin, View):
     def get(self, req, category):
         viewitems = {
             'title': 'Tareas',
             'username': req.user.username,
+            'number_deadlines': number_deadlines_from_user(req.user),
             'category': req.user.category_set.get(id=category),
             'tasks': req.user.category_set.get(id=category).task_set.all()
         }
@@ -38,6 +40,7 @@ class TaskEditView(LoginRequiredMixin, View):
         viewitems = {
             'title': 'Editar Subtarea',
             'username': req.user.username,
+            'number_deadlines': number_deadlines_from_user(req.user),
             'category': req.user.category_set.get(id=category),
             'task': req.user.category_set.get(id=category).task_set.get(id=task),
         }
@@ -83,7 +86,7 @@ def _task_data_from_POST(post):
         result['description'] = post['description']
     
     if 'notify_user' in post:
-        result['notify_user'] = post['notify_user']
+        result['notify_user'] = post['notify_user'] == 'on'
 
     if 'deadline' in post and post['deadline'] != '':
         result['deadline'] = post['deadline']

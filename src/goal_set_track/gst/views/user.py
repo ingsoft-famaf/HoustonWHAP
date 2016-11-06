@@ -6,13 +6,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from deadline import number_deadlines_from_user
 
 # Create your views here.
 @login_required
 def home(req):
     viewitems = {
         'title': 'Home',
-        'username': req.user.username
+        'username': req.user.username,
+        'number_deadlines': number_deadlines_from_user(req.user),
     }
     return redirect('category')
 
@@ -69,7 +71,8 @@ class AboutView(View):
     def get(self, req):
         viewitems = {
             'title': 'About',
-            'username': req.user.username if req.user.username else None
+            'username': req.user.username if req.user.username else None,
+            'number_deadlines': number_deadlines_from_user(req.user) if req.user else None,
         }
         return render(req, 'gst/about.html', viewitems)
 
@@ -79,6 +82,7 @@ class UserView(LoginRequiredMixin, View):
         viewitems = {
             'title': 'Profile Information',
             'username': req.user.username,
+            'number_deadlines': number_deadlines_from_user(req.user),
             'user': req.user
         }
         return render(req, 'gst/user.html', viewitems)
@@ -88,6 +92,7 @@ class UserEditView(LoginRequiredMixin, View):
         viewitems = {
             'title': 'Edit Profile Information',
             'username': req.user.username,
+            'number_deadlines': number_deadlines_from_user(req.user),
             'user': req.user
         }
         return render(req, 'gst/user_edit.html', viewitems)
