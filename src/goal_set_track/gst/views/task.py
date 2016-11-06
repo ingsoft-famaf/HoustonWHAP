@@ -53,7 +53,7 @@ class TaskEditView(LoginRequiredMixin, View):
         task = req.user.category_set.get(id=category).task_set.get(id=task)
         if 'name' in data and ('name' != ''):
             task.name = data['name']
-        if 'description' in data and ('description' != ''):
+        if 'description' in data:
             task.description = data['description']
         if 'notify_user' in data:
             task.notify_user = data['notify_user']
@@ -74,10 +74,10 @@ class TaskDeleteView(LoginRequiredMixin, View):
 def _task_data_from_POST(post):
     result = {}
 
-    if 'name' in post:
+    if 'name' in post and post['name'] != '':
         result['name'] = post['name']
-
-    if 'description' in post:
+    print post['name']
+    if 'description' in post and post['description'] != '':
         result['description'] = post['description']
 
     if 'notify_user' in post:
@@ -88,7 +88,7 @@ def _task_data_from_POST(post):
 
     if 'complete' in post:
         result['complete'] = bool(post['complete'])
-    
+
     # Check semantics
     if 'notify_user' in result and 'deadline' in result:
         try:
