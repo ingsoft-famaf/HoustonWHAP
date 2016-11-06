@@ -31,13 +31,12 @@ class CategoryEditView(LoginRequiredMixin, View):
         return render(req, 'gst/category_edit.html', viewitems)
 
     def post(self, req, category):
-        data = {
-            'name': req.POST.get('new_name', ''),
-        }
+
         category = req.user.category_set.get(id=category)
         if category.name == 'Goals':
             return HTTPr('You can not edit the main category.')
-        category.name = data['name']
+        if req.POST.get('new_name', False):
+            category.name = req.POST.get('new_name')
         category.save()
         return redirect('category')
 
