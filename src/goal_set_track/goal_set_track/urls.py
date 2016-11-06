@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from gst.views import user, task, subtask, category, deadline
+from gst.views import user, task, subtask, category, comment, deadline
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -39,8 +39,13 @@ urlpatterns = [
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/edit/$', task.TaskEditView.as_view(), name='task_edit'),
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/delete/$', task.TaskDeleteView.as_view(), name='task_delete'),
 
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/comment/create/$', comment.CommentCreateView.as_view(), name='comment_create'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/comment/(?P<comment>[\w]+)/delete/$', comment.CommentDeleteView.as_view(), name='comment_delete'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/comment/(?P<comment>[\w]+)/edit/$', comment.CommentEditView.as_view(), name='comment_edit'),
+    
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/$', subtask.SubTaskView.as_view(), name='subtask'),
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/create/$', subtask.SubTaskCreateView.as_view(), name='subtask_create'),
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/(?P<subtask>[\w]+)/edit/$', subtask.SubTaskEditView.as_view(), name='subtask_edit'),
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/(?P<subtask>[\w]+)/delete/$', subtask.SubTaskDeleteView.as_view(), name='subtask_delete'),
+    
 ]

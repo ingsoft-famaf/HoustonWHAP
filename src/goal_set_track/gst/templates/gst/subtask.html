@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 
+
 {% block content %}
 
 <h2>Categoría: {{ category.name }}</h2>
@@ -10,24 +11,24 @@
 {% for subtask in subtasks %}
   <li>
 
-	<form method='POST' action='{% url 'subtask_delete' category.id task.id subtask.id %}'>
+	<form style="display: inline;" method='POST' action='{% url 'subtask_delete' category.id task.id subtask.id %}'>
 	{% csrf_token %}
       <button type='submit' name='delete' value=True class='glyphicon glyphicon-remove'></button>
-    </form>
+  </form>
 
 	 <!-- button edit -->	
-    <form method='GET' action='{% url 'subtask_edit' category.id task.id subtask.id %}'>
+    <form style="display: inline;" method='GET' action='{% url 'subtask_edit' category.id task.id subtask.id %}'>
 	{% csrf_token %}
       <button type='submit' name='edit' value=True class='glyphicon glyphicon-edit'></button>
     </form>
 
     {% if subtask.complete %}
-    <form method='POST' action='{% url 'subtask_edit' category.id task.id subtask.id %}'>
+    <form style="display: inline;" method='POST' action='{% url 'subtask_edit' category.id task.id subtask.id %}'>
 	  {% csrf_token %}
       <button type='submit' name='complete' value='' class='glyphicon glyphicon-unchecked'></button>
     </form>
     {% else %}
-    <form method='POST' action='{% url 'subtask_edit' category.id task.id subtask.id %}'>
+    <form style="display: inline;" method='POST' action='{% url 'subtask_edit' category.id task.id subtask.id %}'>
 	  {% csrf_token %}
       <button type='submit' name='complete' value=True class='glyphicon glyphicon-check'></button>
     </form>
@@ -48,6 +49,33 @@
 	  Notificarme: <input name="notify_user" type='checkbox'/><br>
       <button type="submit" class="btn btn-lg btn-default btn-block">Agregar</button>
   </form>
+
+  <form method='POST' action='{% url 'comment_create' category.id task.id %}'>
+  {% csrf_token %}
+  <input name="text" placeholder="Crear comentario" required type='text'/><br>
+      <button type="submit" class="btn btn-lg btn-default btn-block">Agregar</button>
+  </form>
+
+<ul>
+
+{% for comment in comments %}
+  <li>
+
+    <p style="display: inline;"> {{ comment.text }} </p>
+    <form style="display: inline;" method='GET' action='{% url 'comment_edit' category.id task.id comment.id %}'>
+      {% csrf_token %}
+      <button type='submit' name='edit' value=True class='glyphicon glyphicon-edit'></button>
+    </form>
+
+    <form style="display: inline;" method='POST' action='{% url 'comment_delete' category.id task.id comment.id %}'>
+      {% csrf_token %}
+      <button type='submit' name='delete' class='glyphicon glyphicon-remove'></button>
+    </form>
+
+
+  </li>
+{% endfor %}
+</ul>
 </div>
 
 {% endblock %}

@@ -7,7 +7,7 @@
 {% for category in categories %}
   <li>
     {% if category.name != 'Goals' %}
-    <form method='POST' action='{% url 'category_delete' category.id %}'>
+    <form style="display: inline;" method='POST' action='{% url 'category_delete' category.id %}'>
 	{% csrf_token %}
       <button type='submit' name='delete' value=True class='glyphicon glyphicon-remove'></button>
     </form>

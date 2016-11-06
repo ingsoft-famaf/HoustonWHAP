@@ -16,7 +16,9 @@ class SubTaskView(LoginRequiredMixin, View):
             'category': req.user.category_set.get(id=category),
             'task': req.user.category_set.get(id=category).task_set.get(id=task),
             'subtasks': req.user.category_set.get(id=category)
-                            .task_set.get(id=task).subtask_set.all()
+                            .task_set.get(id=task).subtask_set.all(),
+            'comments': req.user.category_set.get(id=category)
+                            .task_set.get(id=task).comment_set.all(),
         }
         return render(req, 'gst/subtask.html', viewitems)
 
@@ -50,11 +52,13 @@ class SubTaskEditView(LoginRequiredMixin, View):
     def post(self, req, category, task, subtask):
         subtask = req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.get(id=subtask)
 
-        subtask.name = req.POST.get('new_name', subtask.name)
-        subtask.description = req.POST.get('new_description', subtask.description)
+        if req.POST.get('new_name'):
+            subtask.name = req.POST.get('new_name', subtask.name)
+        if req.POST.get('new_description'):
+            subtask.description = req.POST.get('new_description', subtask.description)
         if 'new_deadline' in req.POST:
             if req.POST['new_deadline'] != "":
-            	subtask.deadline = req.POST['new_deadline']
+                subtask.deadline = req.POST['new_deadline']
         subtask.notify_user = bool(req.POST.get('new_notify_user', subtask.notify_user))
         subtask.complete = bool(req.POST.get('complete', subtask.complete))
 
