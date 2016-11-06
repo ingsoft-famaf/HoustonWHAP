@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from gst.views import user, task, subtask, category, comment
+from gst.views import user, task, subtask, category, comment, deadline
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,6 +26,8 @@ urlpatterns = [
     url(r'^register/$', user.RegisterView.as_view(), name='register'),
     url(r'^me/$', user.UserView.as_view(), name='user'),
     url(r'^me/edit/$', user.UserEditView.as_view(), name='user_edit'),
+
+    url(r'^deadlines/$', deadline.DeadlinesView.as_view(), name='deadlines'),
 
     url(r'^category/$', category.CategoryView.as_view(), name='category'),
     url(r'^category/create/$', category.CategoryCreateView.as_view(), name='category_create'),

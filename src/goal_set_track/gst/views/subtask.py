@@ -5,12 +5,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.dateparse import parse_datetime
 from django.utils import timezone
+from deadline import number_deadlines_from_user
 
 class SubTaskView(LoginRequiredMixin, View):
     def get(self, req, category, task):
         viewitems = {
             'title': 'Sub Tareas',
             'username': req.user.username,
+            'number_deadlines': number_deadlines_from_user(req.user),
             'category': req.user.category_set.get(id=category),
             'task': req.user.category_set.get(id=category).task_set.get(id=task),
             'subtasks': req.user.category_set.get(id=category)
@@ -40,6 +42,7 @@ class SubTaskEditView(LoginRequiredMixin, View):
         viewitems = {
             'title': 'Editar Subtarea',
             'username': req.user.username,
+            'number_deadlines': number_deadlines_from_user(req.user),
             'category': req.user.category_set.get(id=category),
             'task': req.user.category_set.get(id=category).task_set.get(id=task),
             'subtask': req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.get(id=subtask)

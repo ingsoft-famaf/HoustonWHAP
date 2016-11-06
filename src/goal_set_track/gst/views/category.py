@@ -4,13 +4,14 @@ from django.http import HttpResponse as HTTPr
 from ..models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from deadline import number_deadlines_from_user
 
 class CategoryView(LoginRequiredMixin, View):
     def get(self, req):
         viewitems = {
             'title': 'Categories',
             'username': req.user.username,
+            'number_deadlines': number_deadlines_from_user(req.user),
             'categories': req.user.category_set.all()
         }
         return render(req, 'gst/category.html', viewitems)
@@ -26,6 +27,7 @@ class CategoryEditView(LoginRequiredMixin, View):
         viewitems = {
             'title': 'Category Edit',
             'username': req.user.username,
+            'number_deadlines': number_deadlines_from_user(req.user),
             'category': req.user.category_set.get(id=category)
         }
         return render(req, 'gst/category_edit.html', viewitems)
