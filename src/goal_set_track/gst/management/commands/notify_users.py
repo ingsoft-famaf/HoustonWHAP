@@ -2,6 +2,8 @@ from django.core.management.base import BaseCommand, CommandError
 from gst.models import Category, Task, SubTask
 from django.contrib.auth.models import User
 from django.utils import timezone
+import smtplib
+
 
 def is_deadline_near(date):
     if date > timezone.now():
@@ -23,8 +25,15 @@ class Command(BaseCommand):
                         if (subtask.notify_user and not subtask.complete and
                             is_deadline_near(subtask.deadline)):
                             deadlines.append(subtask)
-                
-                if len(deadlines) > 0:
-                    self.stdout.write('For user {0} with email {1} found {2} tasks and subtasks near deadlines.'.format(user.username, user.email, len(deadlines)))
+
+                if len(deadlines) > :
+                    server = smtplib.SMTP('smtp.gmail.com', 587)
+                    server.starttls()
+                    server.login('slemankassis@gmail.com', 'TENOCHTITLAN67')
+
+                    message = 'For user {0} found {2} tasks and subtasks near deadlines: \n {3}'.format(user.username, len(deadlines), str(deadlines).strip('[]'))
+                    server.sendmail('slemankassis@gmail.com', 'slemankassis@gmail.com', message)
+                    server.quit()
+                    print 'a'
                     for deadline in deadlines:
                         self.stdout.write(deadline.name)
