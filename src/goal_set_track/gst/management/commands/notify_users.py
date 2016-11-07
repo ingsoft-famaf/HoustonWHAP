@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 if len(deadlines) > :
                     server = smtplib.SMTP('smtp.gmail.com', 587)
                     server.starttls()
-                    server.login('slemankassis@gmail.com', 'TENOCHTITLAN67')
+                    server.login('slemankassis@gmail.com', '')
 
                     message = 'For user {0} found {2} tasks and subtasks near deadlines: \n {3}'.format(user.username, len(deadlines), str(deadlines).strip('[]'))
                     server.sendmail('slemankassis@gmail.com', 'slemankassis@gmail.com', message)
