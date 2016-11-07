@@ -25,7 +25,10 @@
 
 
    <!-- name -->  
-    <a href=''>{{ file.name }}</a>
+    <a href="{{ file.url }}">{{ file.name }}</a>
+    <small>(Uploaded at: {{ file.uploaded_at }})</small>
+
+
   </li>
 {% endfor %}
 </ul>
