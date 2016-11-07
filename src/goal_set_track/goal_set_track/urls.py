@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from gst.views import user, task, subtask, category, comment, deadline
+from gst.views import user, task, subtask, category, comment, deadline, file
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', user.home, name='home'),
     url(r'^about/$', user.AboutView.as_view(), name='about'),
+
     url(r'^login/$', user.LoginView.as_view(), name='login'),
     url(r'^logout/$', user.LogoutView.as_view(), name='logout'),
     url(r'^register/$', user.RegisterView.as_view(), name='register'),
@@ -42,7 +43,17 @@ urlpatterns = [
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/comment/create/$', comment.CommentCreateView.as_view(), name='comment_create'),
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/comment/(?P<comment>[\w]+)/delete/$', comment.CommentDeleteView.as_view(), name='comment_delete'),
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/comment/(?P<comment>[\w]+)/edit/$', comment.CommentEditView.as_view(), name='comment_edit'),
-    
+
+
+ 	#  Attached Files ****
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/file/$', 	  file.FileView.as_view(), name='file'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/file/add/$', file.FileAddView.as_view(), name='file_add'),
+
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/file/(?P<file>[\w]+)/delete/$', file.FileDeleteView.as_view(), name='file_delete'),
+    url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/file/(?P<file>[\w]+)/dowload/$', file.FileDowloadView.as_view(), name='file_dowload'),
+ 
+    # ***********
+
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/$', subtask.SubTaskView.as_view(), name='subtask'),
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/create/$', subtask.SubTaskCreateView.as_view(), name='subtask_create'),
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/(?P<subtask>[\w]+)/edit/$', subtask.SubTaskEditView.as_view(), name='subtask_edit'),

@@ -17,6 +17,11 @@
       <button type='submit' name='edit' value=True class='glyphicon glyphicon-edit'></button>
     </form>
 
+    <form style="display: inline;" method='GET' action='{% url 'file' category.id task.id %}'>
+      {% csrf_token %}
+      <button type='submit' name='attached_file' value=True class='glyphicon glyphicon-paperclip'></button>
+    </form>
+
     {% if task.complete %}
     <form style="display: inline;" method='POST' action='{% url 'task_edit' category.id task.id %}'>
 	  {% csrf_token %}

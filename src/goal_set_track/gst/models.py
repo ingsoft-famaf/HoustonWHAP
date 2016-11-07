@@ -45,3 +45,13 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+class File(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    name = models.TextField()
+    file = models.FileField(upload_to='documents/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
