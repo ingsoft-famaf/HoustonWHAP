@@ -28,7 +28,7 @@ class TaskCreateView(LoginRequiredMixin, View):
 
         req.user.category_set.get(id=category) \
             .task_set.create(name=data['name'], \
-                             description=data['description'], \
+                             description=data['description'] if 'description' in data else '', \
                              deadline=data['deadline'] if 'deadline' in data else None, \
                              notify_user=data['notify_user'] if 'notify_user' in data else False, \
                              complete=False)
@@ -76,7 +76,6 @@ def _task_data_from_POST(post):
 
     if 'name' in post and post['name'] != '':
         result['name'] = post['name']
-    print post['name']
     if 'description' in post and post['description'] != '':
         result['description'] = post['description']
 

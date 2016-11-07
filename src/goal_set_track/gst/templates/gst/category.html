@@ -11,10 +11,10 @@
 	{% csrf_token %}
       <button type='submit' name='delete' value=True class='glyphicon glyphicon-remove'></button>
     </form>
-    <a href='{% url 'category_edit' category.id %}'>
-      <span class='glyphicon glyphicon-edit'></span>
-    </a>
-    <br>
+    <form style="display: inline;" method='GET' action='{% url 'category_edit' category.id %}'>
+	{% csrf_token %}
+      <button type='submit' class='glyphicon glyphicon-edit'></button>
+    </form>
     {% endif %}
 
     <a href='{% url 'task' category.id %}'>{{ category.name }}</a>

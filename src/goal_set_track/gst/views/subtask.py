@@ -98,12 +98,12 @@ def _subtask_data_from_POST(post):
     return result
 
 def _validate_subtask_deadline(task, subtask):
-    print subtask['deadline']
-    if subtask['notify_user'] and (
-        subtask['deadline'] < timezone.now() or
-        subtask['deadline'] > task.deadline):
+    if (task.deadline and subtask['notify_user'] and
+        subtask['deadline'] > timezone.now() and
+        subtask['deadline'] < task.deadline):
         print 'Datetime from subtask is invalid.'
         subtask['notify_user'] = False
         subtask['deadline'] = None
+
 
     return subtask
