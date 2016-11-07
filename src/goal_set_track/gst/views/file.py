@@ -18,12 +18,18 @@ class FileView(LoginRequiredMixin, View):
 class FileAddView(LoginRequiredMixin, View):
     def post(self, req, category, task):
 
-        archivo = req.FILES['file']
-
         t = req.user.category_set.get(id=category).task_set.get(id=task)
-        t.file_set.create(name=req.POST['name'], file=req.POST['file'])
+        t.file_set.create(name=req.POST['name'], file=req.FILES['file'])
 
         return redirect('file', category=category, task=task)
+
+
+
+class FileDowloadView(LoginRequiredMixin, View):
+    def post(self, req, category, task, file):
+
+        t = req.user.category_set.get(id=category).task_set.get(id=task).file_set.get(id=file)
+        t.open()
 
 
 class FileDeleteView(LoginRequiredMixin, View):
@@ -31,10 +37,3 @@ class FileDeleteView(LoginRequiredMixin, View):
         req.user.category_set.get(id=category).task_set.get(id=task).file_set.get(id=file).delete()
 
         return redirect('file', category=category, task=task)
-
-
-class FileDowloadView(LoginRequiredMixin, View):
-    def post(self, req, category, task, file):
-         print "\n\n\nBBBBBBBBBB\n\n\n"
-
-# return redirect('file', category=category, task=task)

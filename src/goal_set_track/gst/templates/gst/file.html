@@ -11,20 +11,20 @@
   <li>
 
 
-   <!-- button delete --> 
+   <!-- button delete -->
     <form style="display: inline;" method='POST' action='{% url 'file_delete' category.id task.id file.id %}'>
   {% csrf_token %}
       <button type='submit' name='delete' value=True class='glyphicon glyphicon-remove'></button>
     </form>
 
-   <!-- button dowload --> 
+   <!-- button dowload -->
     <form style="display: inline;" method='POST' action='{% url 'file_dowload' category.id task.id file.id %}'>
   {% csrf_token %}
       <button type='submit' name='dowload' value=True class='glyphicon glyphicon-circle-arrow-down'></button>
     </form>
 
 
-   <!-- name -->  
+   <!-- name -->
     <a href="{{ file.url }}">{{ file.name }}</a>
     <small>(Uploaded at: {{ file.uploaded_at }})</small>
 
@@ -33,14 +33,13 @@
 {% endfor %}
 </ul>
 
-<div class='container container-fluid'>
-  <form method='POST' class="form-signin" action='{% url 'file_add' category.id task.id %}'>
-  {% csrf_token %}
-    <h2 class="form-signin-heading">Agregar archivo adjunto</h2>
-    Nombre: <input name="name" placeholder="" required type='text'/><br>
-    Archivo: <input name="file" placeholder="" type='file'/><br>
-      <button type="submit" class="btn btn-lg btn-default btn-block">Add</button>
-  </form>
-</div>
+
+<form method="POST" enctype="multipart/form-data" action='{% url 'file_add' category.id task.id %}'>
+    {% csrf_token %}
+  Descripcion: <input type="name" name="name"><br>
+  Archivo:    <input type="file" name="file"><br>
+  <input type="submit" value="Submit">
+</form>
+
 
 {% endblock %}
