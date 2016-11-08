@@ -26,14 +26,14 @@ class Command(BaseCommand):
                             is_deadline_near(subtask.deadline)):
                             deadlines.append(subtask)
 
-                if len(deadlines) > :
+                if len(deadlines) > 0:
+                    deadline_names = ''
+                    for deadline in deadlines:
+                        deadline_names = deadline_names + '\n' + str(deadline.name)
+
                     server = smtplib.SMTP('smtp.gmail.com', 587)
                     server.starttls()
                     server.login('slemankassis@gmail.com', '')
-
-                    message = 'For user {0} found {2} tasks and subtasks near deadlines: \n {3}'.format(user.username, len(deadlines), str(deadlines).strip('[]'))
+                    message = 'For user {0} found {1} tasks and subtasks near deadlines: \n {2}'.format(user.username, len(deadlines), deadline_names)
                     server.sendmail('slemankassis@gmail.com', 'slemankassis@gmail.com', message)
                     server.quit()
-                    print 'a'
-                    for deadline in deadlines:
-                        self.stdout.write(deadline.name)
