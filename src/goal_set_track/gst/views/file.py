@@ -29,7 +29,7 @@ class FileDowloadView(LoginRequiredMixin, View):
     def post(self, req, category, task, file):
 
         t = req.user.category_set.get(id=category).task_set.get(id=task).file_set.get(id=file)
-        t.open()
+        return redirect(t.file.url)
 
 
 class FileDeleteView(LoginRequiredMixin, View):
