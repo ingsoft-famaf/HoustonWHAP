@@ -60,8 +60,20 @@ class TaskEditView(LoginRequiredMixin, View):
         if 'deadline' in data :
             task.deadline = data['deadline']
         if 'complete' in data:
-            task.complete = data['complete']
+            # Only can change if quantity of subtask is 0.
+            all_subtask = task.subtask_set.all()
+            quantity_subtask = len(all_subtask)
+            print "\n cantidad subtask = ", quantity_subtask
 
+            if quantity_subtask == 0:
+                task.complete = data['complete']
+                if task.complete:
+                    task.progress = 100
+                else:
+                    task.progress = 0
+            else:
+                # print alert message to the user.
+                print "\n CANT CHANGE\n"
         task.save()
 
         return redirect('task', category=category)

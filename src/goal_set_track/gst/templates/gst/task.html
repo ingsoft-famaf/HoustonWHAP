@@ -35,6 +35,8 @@
     {% endif %}
 
     <a href='{% url 'subtask' category.id task.id %}'>{{ task.name }}</a>
+    <p>Progreso: {{ task.progress }} % </p>
+
   </li>
 {% endfor %}
 </ul>

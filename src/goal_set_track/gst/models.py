@@ -21,6 +21,7 @@ class Task(models.Model):
     deadline = models.DateTimeField(null=True, blank=True)
     notify_user = models.BooleanField(default=False)
     complete = models.BooleanField(default=False)
+    progress = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return self.name
