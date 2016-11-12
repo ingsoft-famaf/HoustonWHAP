@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.conf import settings
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from gst.views import user, task, subtask, category, comment, deadline, file
+
+# Python Social Auth URLs
+url('', include('social.apps.django_app.urls', namespace='social')),
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -59,4 +62,6 @@ urlpatterns = [
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/(?P<subtask>[\w]+)/edit/$', subtask.SubTaskEditView.as_view(), name='subtask_edit'),
     url(r'^category/(?P<category>[\w]+)/task/(?P<task>[\w]+)/subtask/(?P<subtask>[\w]+)/delete/$', subtask.SubTaskDeleteView.as_view(), name='subtask_delete'),
 
+
+    url('', include('social.apps.django_app.urls', namespace='social')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

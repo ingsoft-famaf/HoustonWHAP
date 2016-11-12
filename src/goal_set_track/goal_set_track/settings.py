@@ -38,7 +38,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # Third-party apps
+	'social.apps.django_app.default',
 ]
+
+context_processors = [
+ 'django.template.context_processors.debug',
+ 'django.template.context_processors.request',
+ 'django.contrib.auth.context_processors.auth',
+ 'django.contrib.messages.context_processors.messages',
+ # Python Social Auth Context Processors
+ 'social.apps.django_app.context_processors.backends',
+ 'social.apps.django_app.context_processors.login_redirect',
+],
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -123,3 +136,22 @@ STATIC_URL = '/static/'
 LOGIN_URL = 'login'
 MEDIA_URL =  '/media/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+
+
+AUTHENTICATION_BACKENDS = (
+# Facebook
+'social.backends.facebook.FacebookOAuth2',
+# Github
+ 'social.backends.github.GithubOAuth2',
+# Django
+'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1811532339131336'
+SOCIAL_AUTH_FACEBOOK_SECRET = '1723377c4228c7d8205b903c8ae8f1f1'
+
+# Github Keys
+SOCIAL_AUTH_GITHUB_KEY = '25c55ffa3dc9c8121040'
+SOCIAL_AUTH_GITHUB_SECRET = 'b185b4540c9993b4ada7b652c569c224b4ad119b'
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/category/"
