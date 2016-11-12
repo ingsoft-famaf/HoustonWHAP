@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
-from django.views.generic import View
-from ..models import *
-from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.utils.dateparse import parse_datetime
+from django.shortcuts import render, redirect
 from django.utils import timezone
+from django.utils.dateparse import parse_datetime
+from django.views.generic import View
+
 from deadline import number_deadlines_from_user
+
 
 class SubTaskView(LoginRequiredMixin, View):
     def get(self, req, category, task):
@@ -35,6 +35,8 @@ class SubTaskCreateView(LoginRequiredMixin, View):
                              notify_user=data['notify_user'],
                              complete=False)
 
+        _update_progress(t)
+
         return redirect('subtask', category=category, task=task)
 
 class SubTaskEditView(LoginRequiredMixin, View):
@@ -50,6 +52,7 @@ class SubTaskEditView(LoginRequiredMixin, View):
         return render(req, 'gst/subtask_edit.html', viewitems)
 
     def post(self, req, category, task, subtask):
+        t = req.user.category_set.get(id=category).task_set.get(id=task)
         subtask = req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.get(id=subtask)
 
         if req.POST.get('new_name'):
@@ -63,12 +66,14 @@ class SubTaskEditView(LoginRequiredMixin, View):
         subtask.complete = bool(req.POST.get('complete', subtask.complete))
 
         subtask.save()
-
+        _update_progress(t)
         return redirect('subtask', category=category, task=task)
 
 class SubTaskDeleteView(LoginRequiredMixin, View):
     def post(self, req, category, task, subtask):
         req.user.category_set.get(id=category).task_set.get(id=task).subtask_set.get(id=subtask).delete()
+        t = req.user.category_set.get(id=category).task_set.get(id=task)
+        _update_progress(t)
         return redirect('subtask', category=category, task=task)
 
 def _subtask_data_from_POST(post):
@@ -107,3 +112,22 @@ def _validate_subtask_deadline(task, subtask):
 
 
     return subtask
+
+
+def _update_progress(task):
+
+    all_subtask = task.subtask_set.all()
+    print "all subtask: ", all_subtask
+
+    quantity_subtask = len(all_subtask)
+    print "\n cantidad subtask = ", quantity_subtask
+
+    all_complete_subtask = all_subtask.filter(complete=True)
+    print "all complete subtask: ", all_complete_subtask
+
+    quantity_subtask_complete = len(all_complete_subtask)
+    print "\n cantidad subtask completos = ", quantity_subtask_complete
+
+    percent = quantity_subtask_complete * 100 / quantity_subtask
+    task.progress = percent
+    task.save()
