@@ -1,28 +1,44 @@
 {% extends 'layout.html' %}
-
 {% block content %}
+{% load static %}
+<link rel='stylesheet' href='{% static 'gst/style.css' %}'>
+<div class='box-black'>
+  <h2>Categorías:</h2>
+  <ul class='list'>
+  {% for category in categories %}
+    <li>
+      {% if category.name == 'Goals' %}
+      
+        <form style='display: inline;' action='{% url 'task' category.id %}'>
+          <button type='submit'value=True class='hvr-underline-from-left'/>{{ category.name }}</button>
+        </form>
+      
+      {% else %}
+      
+         <form style='display: inline;' action='{% url 'task' category.id %}'>
+          <button type='submit'value=True class='hvr-underline-from-left'/>{{ category.name }}</button>
+        </form>
+      
+        <form style="display: inline;" method='POST' action='{% url 'category_delete' category.id %}'>
+          {% csrf_token %}
+          <button type='submit' name='edit' value=True class="button-edit-category hvr-fade" style="vertical-align:middle" onclick="upisnik();">eliminar</button>
+        </form>
 
-<h2>Categorías:</h2>
-<ul>
-{% for category in categories %}
-  <li>
-    {% if category.name != 'Goals' %}
-    <form style="display: inline;" method='POST' action='{% url 'category_delete' category.id %}'>
-	{% csrf_token %}
-      <button type='submit' name='delete' value=True class='glyphicon glyphicon-remove'></button>
-    </form>
-    <form style="display: inline;" method='GET' action='{% url 'category_edit' category.id %}'>
-	{% csrf_token %}
-      <button type='submit' class='glyphicon glyphicon-edit'></button>
-    </form>
-    {% endif %}
+        <form style="display: inline;" method='GET' action='{% url 'category_edit' category.id %}'>
+          {% csrf_token %}
+          <button type='submit' name='edit' value=True class="button-edit-category hvr-sweep-to-right" style="vertical-align:middle" onclick="upisnik();">editar</button>
+        </form>
+      
+      {% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+</div>
 
-    <a href='{% url 'task' category.id %}'>{{ category.name }}</a>
-  </li>
-{% endfor %}
-</ul>
-
-<div class='container container-fluid'>
+<div class='box-black2'>
+  {% if error %}
+  <h2>{{error}}</h2>
+  {% endif %}
   <form method='POST' class="form-signin" action='{% url 'category_create' %}'>
 	{% csrf_token %}
     <h2 class="form-signin-heading">Categoría nueva</h2>
