@@ -72,7 +72,7 @@ class AboutView(View):
         viewitems = {
             'title': 'About',
             'username': req.user.username if req.user.username else None,
-            'number_deadlines': number_deadlines_from_user(req.user) if req.user else None,
+            'number_deadlines': number_deadlines_from_user(req.user) if req.user.username else None,
         }
         return render(req, 'gst/about.html', viewitems)
 
