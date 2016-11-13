@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Progreso Mensual:</h1>
+
+{% if created_tasks %}
+<h3>Creadas:</h3>
+<ul>
+  {% for task in created_tasks %}
+  <li>
+    <a href="{% url 'task' task.category_id %}">{{ task.name }}</a>
+    <p>{{ task.created_at }}</p>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if completed_tasks %}
+<h3>Completas:</h3>
+<ul>
+  {% for task in completed_tasks %}
+  <li>
+    <a href="{% url 'task' task.category.id %}">{{ task.name }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if failed_tasks %}
+<h3>Fallidas:</h3>
+<ul>
+  {% for task in failed_tasks %}
+  <li>
+    <a href="{% url 'task' task.category.id %}">{{ task.name }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}

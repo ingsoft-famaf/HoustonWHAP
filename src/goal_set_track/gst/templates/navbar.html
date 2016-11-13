@@ -15,6 +15,11 @@
     <ul class="nav navbar-nav navbar-right">
       {% if username %}
         <li>
+          <a href="{% url 'statistics' %}">
+            Estadisticas
+          </a>
+        </li>
+        <li>
           <a href="{% url 'deadlines' %}">
             Deadlines
             <span class="badge">{{ number_deadlines }}</span>
