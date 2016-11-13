@@ -1,3 +1,4 @@
+# -*- encoding=utf-8 -*-
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.http import HttpResponse as HTTPr
@@ -19,8 +20,19 @@ class CategoryView(LoginRequiredMixin, View):
 class CategoryCreateView(LoginRequiredMixin, View):
     def post(self, req):
         name = req.POST['name']
-        req.user.category_set.create(name=name)
-        return redirect('task', category=req.user.category_set.get(name=name).id)
+        try:
+            req.user.category_set.get(name=name)
+            viewitems = {
+                'title': 'Categories',
+                'username': req.user.username,
+                'number_deadlines': number_deadlines_from_user(req.user),
+                'categories': req.user.category_set.all(),
+                'error': 'La categoría ya existe. No pueden haber duplicados.'
+            }
+            return render(req, 'gst/category.html', viewitems)
+        except Category.DoesNotExist:
+            req.user.category_set.create(name=name)
+            return redirect('task', category=req.user.category_set.get(name=name).id)
 
 class CategoryEditView(LoginRequiredMixin, View):
     def get(self, req, category):
