@@ -39,6 +39,7 @@ h4 {
   left:50%;
   border: 3px solid black;
 }
+
 .userinfo {
   width:500px;
   height:400px;
@@ -145,6 +146,46 @@ input[type=password], select {
   transition: all 0.5s;
   cursor: pointer;
   margin: 0px;
+}
+
+.button-edit-category {
+  display: inline-block;
+  background-color: grey;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 18px;
+  padding: 2px;
+  width: 70px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.box-black {
+  width:500px;
+  height:700px;
+  background-color:black;
+  opacity: 0.8;
+  position:fixed;
+  margin-left:-250px; /* half of width */
+  margin-top:-350px;  /* half of height */
+  top:60%;
+  left:20%;
+  border: 3px solid black;
+}
+
+.box-black2 {
+  width:500px;
+  height:700px;
+  background-color:black;
+  opacity: 0.8;
+  position:fixed;
+  margin-left:-250px; /* half of width */
+  margin-top:-350px;  /* half of height */
+  top:60%;
+  left:70%;
+  border: 3px solid black;
 }
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
@@ -1354,7 +1395,7 @@ input[type=password], select {
   transition-property: color, background-color;
 }
 .hvr-fade:hover, .hvr-fade:focus, .hvr-fade:active {
-  background-color: #2098D1;
+  background-color: red;
   color: white;
 }
 
@@ -2296,14 +2337,21 @@ input[type=password], select {
 
 /* Underline From Left */
 .hvr-underline-from-left {
-  display: inline-block;
+  display: inline;
+  background-color: black;
   vertical-align: middle;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px transparent;
   position: relative;
   overflow: hidden;
+  font-size: 18px;
+  text-align: center;
+  width: 200px;
+  border: none;
+  margin: 0px;
 }
+
 .hvr-underline-from-left:before {
   content: "";
   position: absolute;
