@@ -113,6 +113,14 @@ h4 {
   color: black;
 }
 
+.title-red{
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  text-align: center;
+  color: red;
+}
+
+
 input[type=text], select {
     width: 100%;
     color: black;
@@ -146,6 +154,7 @@ input[type=password], select {
   transition: all 0.5s;
   cursor: pointer;
   margin: 0px;
+  position:fixed;
 }
 
 .button-edit-category {
@@ -159,23 +168,59 @@ input[type=password], select {
   width: 70px;
   transition: all 0.5s;
   cursor: pointer;
-  margin: 10px;
 }
 
-.box-black {
-  width:500px;
+.button-edit-task {
+  display: inline-block;
+  background-color: grey;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 15.5px;
+  padding: 2px;
+  width: 60px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.button-check {
+  display: inline-block;
+  background-color: green;
+  border: none;
+  text-align: center;
+  font-size: 15.5px;
+  padding: 2px;
+  width: 30px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.button-uncheck {
+  display: inline-block;
+  background-color: red;
+  border: none;
+  text-align: center;
+  font-size: 15.5px;
+  padding: 2px;
+  width: 30px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.box-black-left {
+  width:520px;
   height:700px;
   background-color:black;
   opacity: 0.8;
   position:fixed;
-  margin-left:-250px; /* half of width */
+  margin-left:-240px; /* half of width */
   margin-top:-350px;  /* half of height */
   top:60%;
-  left:20%;
+  left:23%;
   border: 3px solid black;
 }
 
-.box-black2 {
+.box-black-right {
   width:500px;
   height:700px;
   background-color:black;
