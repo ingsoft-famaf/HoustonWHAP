@@ -48,9 +48,9 @@
     <form method='POST' class="form-signin" action='{% url 'task_create' category.id %}'>
   	{% csrf_token %}
       <h2 class="form-signin-heading">Tarea nueva</h2>
-  	  Nombre: <input name="name" placeholder="Comprar verduras" required type='text'/><br>
-  	  Descripción: <input name="description" placeholder="Ir al super" type='text'/><br>
-  	  Fecha de vencimiento: <input name="deadline" placeholder="2018-12-23 17:09:45" type='datetime-local'/><br>
+  	  Nombre: <input name="name" placeholder="Ej: Comprar verduras" required type='text'/><br>
+  	  Descripción: <input name="description" placeholder="Ej: Ir al super" type='text'/><br>
+  	  Fecha de vencimiento: <input name="deadline" placeholder="2018-12-23 17:09:45" type='datetime-local'/>
   	  Notificarme: <input name="notify_user" type='checkbox'/><br>
         <button type="submit" class="btn btn-lg btn-default btn-block hvr-round-corners hvr-back-pulse">Agregar</button>
     </form>
