@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 <link rel='stylesheet' href='{% static 'gst/style.css' %}'>
-<div class='box-black'>
+<div class='box-black-left'>
   <h2>Categorías:</h2>
   <ul class='list'>
   {% for category in categories %}
@@ -35,17 +35,17 @@
   </ul>
 </div>
 
-<div class='box-black2'>
-  {% if error %}
-  <h2>{{error}}</h2>
-  {% endif %}
+<div class='box-black-right'>
   <form method='POST' class="form-signin" action='{% url 'category_create' %}'>
-	{% csrf_token %}
+  {% csrf_token %}
     <h2 class="form-signin-heading">Categoría nueva</h2>
+    {% if error %}
+    <h2 class='title-red'>{{error}}</h2>
+    {% endif %}
 	  <label for="inputName" class="sr-only">Name</label>
 	  <input id="inputName" name="name" placeholder="Ej.: Compras" required type='text'/><br>
 
-      <button type="submit" class="btn btn-lg btn-default btn-block">Agregar</button>
+      <button type="submit" class="btn btn-lg btn-default btn-block hvr-round-corners hvr-back-pulse">Agregar</button>
   </form>
 </div>
 
