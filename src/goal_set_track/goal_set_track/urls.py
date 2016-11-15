@@ -17,7 +17,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin
-from gst.views import user, task, subtask, category, comment, deadline, file
+from gst.views import user, task, subtask, category, comment, deadline, file, statistics
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -31,6 +31,8 @@ urlpatterns = [
     url(r'^me/edit/$', user.UserEditView.as_view(), name='user_edit'),
 
     url(r'^deadlines/$', deadline.DeadlinesView.as_view(), name='deadlines'),
+
+    url(r'^statistics/$', statistics.StatisticsView.as_view(), name='statistics'),
 
     url(r'^category/$', category.CategoryView.as_view(), name='category'),
     url(r'^category/create/$', category.CategoryCreateView.as_view(), name='category_create'),
