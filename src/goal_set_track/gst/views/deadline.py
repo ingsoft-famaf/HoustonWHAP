@@ -7,6 +7,8 @@ from django.utils.dateparse import parse_datetime
 from django.utils import timezone
 
 def is_deadline_near(date):
+    if date is None:
+        return False
     if date > timezone.now():
         delta = date - timezone.now()
         return delta.days == 0
