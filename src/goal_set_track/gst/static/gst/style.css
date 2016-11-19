@@ -185,7 +185,7 @@ input[type=password], select {
   text-align: center;
   font-size: 15.5px;
   padding: 2px;
-  width: 753px;
+  width: 75px;
   transition: all 0.5s;
   cursor: pointer;
 }
@@ -240,6 +240,19 @@ input[type=password], select {
   border: 3px solid black;
 }
 
+.box-black-stadistics {
+  width:520px;
+  height:700px;
+  background-color:black;
+  opacity: 0.8;
+  position:fixed;
+  margin-left: 100px; /* half of width */
+  margin-top:-350px;  /* half of height */
+  top:60%;
+  left:23%;
+  border: 3px solid black;
+}
+
 .box-black-right {
   width:500px;
   height:700px;
@@ -252,7 +265,13 @@ input[type=password], select {
   left:70%;
   border: 3px solid black;
 }
+.ellipsis {
+  text-overflow: ellipsis;
 
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    grey;
 }
@@ -268,6 +287,24 @@ input[type=password], select {
    color:    grey;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 1px;
+    color: black;
+    background-color: white;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
 /* Grow */
 .hvr-grow {
   display: inline-block;
