@@ -120,6 +120,13 @@ h4 {
   color: red;
 }
 
+input, select, textarea{
+    color: black;
+}
+
+textarea:focus, input:focus {
+    color: black;
+}
 
 input[type=text], select {
     width: 100%;
@@ -166,6 +173,19 @@ input[type=password], select {
   font-size: 18px;
   padding: 2px;
   width: 70px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.button-download {
+  display: inline-block;
+  background-color: grey;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 15.5px;
+  padding: 2px;
+  width: 753px;
   transition: all 0.5s;
   cursor: pointer;
 }
@@ -234,18 +254,18 @@ input[type=password], select {
 }
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    black;
+    color:    grey;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:    black;
+   color:    grey;
    opacity:  1;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    black;
+   color:    grey;
    opacity:  1;
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:    black;
+   color:    grey;
 }
 
 /* Grow */

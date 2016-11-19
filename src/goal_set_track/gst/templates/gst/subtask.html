@@ -7,6 +7,9 @@
 <div class='box-black-left'>
   <h2>Categoría: {{ category.name }}</h2>
   <h3 style="text-align:left;">Tarea: {{ task.name }}</h3>
+  {% if task.deadline %}
+    <h4 style="text-align:left; color: red;">Expira: {{task.deadline}}<h4>
+  {% endif %}  
   <h4 style="text-align:left; color:white;">Descripcion: {{task.description}}<h4>
   <h4 style="text-align:left; color:white;">Progreso: {{task.progress}} % <h4>
 
