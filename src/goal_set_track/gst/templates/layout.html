@@ -9,7 +9,11 @@
     <title>GST {{ title }}</title>
     <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     {% load static %}
-    <link rel='stylesheet' href='{% static 'gst/base.css' %}'>
+    {% if username %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'get_deadlines.js' %}"></script>
+    {% endif %}
+    <link rel='stylesheet' href="{% static 'gst/base.css' %}">
     {% block head %}
     {% endblock %}
   </head>
