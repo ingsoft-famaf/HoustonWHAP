@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^me/edit/$', user.UserEditView.as_view(), name='user_edit'),
 
     url(r'^deadlines/$', deadline.DeadlinesView.as_view(), name='deadlines'),
+    url(r'^number_deadlines/$', deadline.DeadlinesAmmountView.as_view(), name='number_deadlines'),
 
     url(r'^statistics/$', statistics.StatisticsView.as_view(), name='statistics'),
 

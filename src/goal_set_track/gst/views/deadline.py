@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.dateparse import parse_datetime
 from django.utils import timezone
+from django.http import JsonResponse
 
 def is_deadline_near(date):
     if date is None:
@@ -27,18 +28,10 @@ def deadlines_from_user(user):
                 is_deadline_near(task.deadline)):
                 task_deadlines.append(task)
             for subtask in task.subtask_set.all():
-                print subtask
-                print subtask.notify_user
-                print subtask.deadline
                 if (not subtask.complete and
                     subtask.notify_user and
                     is_deadline_near(subtask.deadline)):
                     subtask_deadlines.append(subtask)
-
-    print 'tasks: \n'
-    print task_deadlines
-    print 'subtasks: \n'
-    print subtask_deadlines
 
     return task_deadlines, subtask_deadlines
 
@@ -53,3 +46,9 @@ class DeadlinesView(LoginRequiredMixin, View):
             'subtask_deadlines': subtask_deadlines if len(subtask_deadlines) > 0 else False,
         }
         return render(req, 'gst/deadlines.html', viewitems)
+
+class DeadlinesAmmountView(LoginRequiredMixin, View):
+    def get(self, req):
+        if req.user:
+            number_deadlines = number_deadlines_from_user(req.user)
+            return JsonResponse({"number_deadlines": number_deadlines})

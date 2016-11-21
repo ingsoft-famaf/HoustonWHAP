@@ -24,8 +24,6 @@ class TaskCreateView(LoginRequiredMixin, View):
         if 'notify_user' in data:
             data = _validate_task_deadline(data)
 
-        print data
-
         req.user.category_set.get(id=category) \
             .task_set.create(name=data['name'], \
                              description=data['description'] if 'description' in data else '', \
