@@ -25,7 +25,10 @@ SECRET_KEY = '-^z4e5wo))b6vw%%)po3d#f6-vvkvqvnaemd)h0y4j9=&lua@^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['goalsettrack.pythonanywhere.com']
+
+# for pythonanywhere.
+STATIC_ROOT = "/home/goalsettrack/HoustonWHAP/src/goal_set_track/gst/static"
 
 
 # Application definition
