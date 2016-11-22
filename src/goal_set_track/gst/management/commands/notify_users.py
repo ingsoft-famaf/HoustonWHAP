@@ -1,9 +1,18 @@
 from django.core.management.base import BaseCommand, CommandError
 from gst.models import Category, Task, SubTask
 from django.contrib.auth.models import User
+from django.contrib.sessions.models import Session
 from django.utils import timezone
-import smtplib
+from email import Email
 
+def get_logged_out_users():
+    active_sessions = Session.objects.filter(expire_date__gte=timezone.now())
+    user_id_list = []
+    for session in active_sessions:
+        data = session.get_decoded()
+        user_id_list.append(data.get('_auth_user_id', None))
+    # Query all logged in users based on id list
+    return User.objects.exclude(id__in=user_id_list)
 
 def is_deadline_near(date):
     if date > timezone.now():
@@ -14,7 +23,9 @@ class Command(BaseCommand):
     help = 'Checks for tasks/subtasks near deadlines and notify users.'
 
     def handle(self, *args, **options):
-        for user in User.objects.all():
+        subject = 'Tareas por vencer!'
+        for user in get_logged_out_users():
+            print(user.username)
             deadlines = []
             for category in user.category_set.all():
                 for task in category.task_set.all():
@@ -26,14 +37,13 @@ class Command(BaseCommand):
                             is_deadline_near(subtask.deadline)):
                             deadlines.append(subtask)
 
-                if len(deadlines) > 0:
-                    deadline_names = ''
-                    for deadline in deadlines:
-                        deadline_names = deadline_names + '\n' + str(deadline.name)
+            if len(deadlines) > 0:
+                message = ''
+                message += 'Gracias por usar GST!\n'
+                message += 'Usted tiene {} tareas por vencer:\n\n'.format(len(deadlines))
+                for deadline in deadlines:
+                    message += '\t+ Tarea: {} - Vence: {}'.format(str(deadline.name),
+                                                              deadline.deadline.strftime(
+                                                                       '%Y-%m-%d %H:%M:%S %z'))
 
-                    server = smtplib.SMTP('smtp.gmail.com', 587)
-                    server.starttls()
-                    server.login('slemankassis@gmail.com', '')
-                    message = 'For user {0} found {1} tasks and subtasks near deadlines: \n {2}'.format(user.username, len(deadlines), deadline_names)
-                    server.sendmail('slemankassis@gmail.com', 'slemankassis@gmail.com', message)
-                    server.quit()
+                Email().send(user.email, subject, message)

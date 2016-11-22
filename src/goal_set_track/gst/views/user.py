@@ -33,7 +33,7 @@ class LoginView(View):
             login(req, user)
             return redirect('category')
         else:
-            return HTTPr('El usuario o contrasena son incorrectos.')
+            return redirect('login')
 
 class LogoutView(LoginRequiredMixin, View):
     def get(self, req):
