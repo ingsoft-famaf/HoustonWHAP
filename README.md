@@ -14,4 +14,4 @@
 
 
 ##### ONLINE SERVER:
-[goalsettrack.pythonanywhere.com](https://www.goalsettrack.pythonanywhere.com)
+[goalsettrack.pythonanywhere.com](goalsettrack.pythonanywhere.com)
