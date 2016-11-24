@@ -6,6 +6,8 @@
 Finished!
 ## Version:
 v 1.0.0
+## WIKI:
+[Github Wiki] (https://github.com/ingsoft-famaf/HoustonWHAP/wiki)
 
 ---
 
